@@ -1,32 +1,32 @@
-{% set url = path('ads_show', {'slug': ad.slug}) %}
+    {% set url = path('ads_show', {'slug': ad.slug}) %}
 
-<div class="col-md-4">
+    <div class="col-md-4">
 
-    <div class="card bg-light mb-3">
-        <div class="card-header text-center">
-            {{ ad.departureCity }}, <strong>{{ ad.price }}&euro; / jours</strong>
-            <br>
-            {{ ad.rooms }} cabines
-            <br>
-            <small>Pas encore noté</small>
+        <div class="card bg-light mb-3">
+            <div class="card-header text-center">
+                {{ ad.departureCity }}, <strong>{{ ad.price }}&euro; / jours</strong>
+                <br>
+                {{ ad.rooms }} cabines
+                <br>
+                <small>Pas encore noté</small>
+            </div>
+            <a href="{{ url }}">
+                <img src="{{ ad.coverImage }}" alt="bateau" style="height: 200px; width: 100%; display: block;">
+            </a>
+            <div class="card-body">
+                <h4 class="card-title">
+                    <a href="{{ url}}">{{ ad.title }}</a>
+                </h4>
+                <p class="card-tex">
+                    {{ ad.introduction }}
+                </p>
+                <a href="{{ url }}" class="btn btn-secondary">En savoir plus</a>
+                {% if app.user and app.user == ad.author %}
+
+                    <a href="{{ path('ads_edit', {'slug': ad.slug}) }}" class="btn btn-secondary">Modifier l'annonce</a>
+
+                {% endif %}
+            </div>
         </div>
-        <a href="{{ url }}">
-            <img src="{{ ad.coverImage }}" alt="bateau" style="height: 200px; width: 100%; display: block;">
-        </a>
-        <div class="card-body">
-            <h4 class="card-title">
-                <a href="{{ url}}">{{ ad.title }}</a>
-            </h4>
-            <p class="card-tex">
-                {{ ad.introduction }}
-            </p>
-            <a href="{{ url }}" class="btn btn-secondary">En savoir plus</a>
-            {% if app.user and app.user == ad.author %}
 
-                <a href="{{ path('ads_edit', {'slug': ad.slug}) }}" class="btn btn-secondary">Modifier l'annonce</a>
-
-            {% endif %}
-        </div>
     </div>
-
-</div>

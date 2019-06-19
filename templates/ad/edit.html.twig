@@ -1,26 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modification d'une annonce{% endblock %}
+    {% block title %}Modification d'une annonce{% endblock %}
 
-{% form_theme form 'ad/_collection.html.twig' %}
+    {% form_theme form 'ad/_collection.html.twig' %}
 
-{% block body %}
-     <div class="container">
-        <h1>Modifier l'annonce : {{ad.title}}</h1>
+    {% block body %}
+         <div class="container">
+            <h1 class="my-5 pt-5" >Modifier l'annonce : {{ad.title}}</h1>
 
-        {{ form_start(form) }}
+            {{ form_start(form) }}
 
-        {{ form_widget(form) }}
+            {{ form_widget(form) }}
 
-        <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+            <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
 
-        {{ form_end(form) }}
-    </div>
-{% endblock %}
+            {{ form_end(form) }}
+        </div>
+    {% endblock %}
 
 
-{% block javascripts %}
+    {% block javascripts %}
 
-<script src="{{ asset('build/js/ad.js') }}"></script>
+    <script src="{{ asset('build/js/ad.js') }}"></script>
 
-{% endblock %}
+    {% endblock %}

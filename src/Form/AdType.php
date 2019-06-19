@@ -42,6 +42,10 @@ class AdType extends ApplicationType
                 TextType::class, $this->getConfiguration("Introduction", "Donnez une description globale de l'annonce")
             )
             ->add(
+                'departureCity',
+                TextType::class, $this->getConfiguration("La ville de départ", "Ville de départ")
+            )
+            ->add(
                 'content', 
                 TextareaType::class, $this->getConfiguration("Description détaillée", "Tapez une description")
             )

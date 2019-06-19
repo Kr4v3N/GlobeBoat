@@ -1,59 +1,60 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Création d'une annonece{% endblock %}
+    {% block title %}Création d'une annonce{% endblock %}
 
-{% form_theme form 'ad/_collection.html.twig' %}
+    {% form_theme form 'ad/_collection.html.twig' %}
 
-{% block body %}
+    {% block body %}
 
-    <div class="container">
-        <h1 class="my-5">Créer une nouvelle annonce</h1>
+        <div class="container">
+            <h1 class="my-5 pt-5">Créer une nouvelle annonce</h1>
 
-        {{ form_start(form) }}
+            {{ form_start(form) }}
 
-        <div class="row">
-            <div class="col">
-                <div class="alert alert-light">
-                    <h2>Informations générales</h2>
-                    <hr>
-                    {{ form_row(form.title) }}
-                    {{ form_row(form.slug) }}
-                    {{ form_row(form.price) }}
-                    {{ form_row(form.rooms) }}
+            <div class="row">
+                <div class="col">
+                    <div class="alert alert-light">
+                        <h2>Informations générales</h2>
+                        <hr>
+                        {{ form_row(form.title) }}
+                        {{ form_row(form.slug) }}
+                        {{ form_row(form.price) }}
+                        {{ form_row(form.rooms) }}
+                        {{ form_row(form.departureCity) }}
+                    </div>
+                    <div class="alert alert-light">
+                        <h2>Détails de l'annonce</h2>
+                        <hr>
+                        {{ form_row(form.introduction) }}
+                        {{ form_row(form.content) }}
+                    </div>
                 </div>
-                <div class="alert alert-light">
-                    <h2>Détails de l'annonce</h2>
-                    <hr>
-                    {{ form_row(form.introduction) }}
-                    {{ form_row(form.content) }}
+                <div class="col">
+                    <div class="alert alert-light">
+                        <h2>Images de l'annonce</h2>
+                        <hr>
+                        {{ form_row(form.coverImage) }}
+                        {{ form_row(form.images) }}
+                    </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="alert alert-light">
-                    <h2>Images de l'annonce</h2>
-                    <hr>
-                    {{ form_row(form.coverImage) }}
-                    {{ form_row(form.images) }}
-                </div>
+
+            <div class="alert alert-success clearfix">
+                <h2 class="alert-heading">Sauvegarder mon annonce</h2>
+                <p>Vous êtes sur le point de créer votre annonce !</p>
+                <button type="submit" class="btn btn-primary float-right">
+                    <i class="fas fa-check"></i>
+                    Créer la nouvelle annonce
+                </button>
             </div>
+
+            {{ form_end(form) }}
         </div>
 
-        <div class="alert alert-success clearfix">
-            <h2 class="alert-heading">Sauvegarder mon annonce</h2>
-            <p>Vous êtes sur le point de créer votre annonce !</p>
-            <button type="submit" class="btn btn-primary float-right">
-                <i class="fas fa-check"></i>
-                Créer la nouvelle annonce
-            </button>
-        </div>
+    {% endblock %}
 
-        {{ form_end(form) }}
-    </div>
+    {% block javascripts %}
 
-{% endblock %}
+    <script src="{{ asset('build/js/ad.js') }}"></script>
 
-{% block javascripts %}
-
-<script src="{{ asset('build/js/ad.js') }}"></script>
-
-{% endblock %}
+    {% endblock %}
