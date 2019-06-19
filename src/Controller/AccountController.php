@@ -11,6 +11,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
 
 /**
  * Class AccountController
@@ -88,7 +90,7 @@ class AccountController extends Controller
      * Permet d'afficher et de traiter le formulaire de modification de profil
      *
      * @return \Symfony\Component\HttpFoundation\Response
-     *
+     * @\Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted("ROLE_USER")
      * @Route("/account/profile", name="account_profile")
      */
     public function profile(Request $request, ObjectManager $manager)
@@ -119,7 +121,7 @@ class AccountController extends Controller
      * Permet d'afficher le profil de l'utilisateur connecté
      *
      * @return \Symfony\Component\HttpFoundation\Response
-     *
+     * @\Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted("ROLE_USER")
      * @Route("/account", name="account_index")
      */
     public function myAccount()
