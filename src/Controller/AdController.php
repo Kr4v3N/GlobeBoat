@@ -143,4 +143,26 @@ class AdController extends Controller
         ]);
     }
 
+    /**
+     * Permet de supprimer une annonce
+     *
+     * @Security("is_granted('ROLE_USER') and user == ad.getAuthor()", message="Vous n'avez pas le droit d'accéder à cette ressource")
+     * @param Ad $ad
+     * @param ObjectManager $manager
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/ads/{slug}/delete", name="ads_delete")
+     */
+    public function delete(Ad $ad, ObjectManager $manager) {
+
+        $manager->remove($ad);
+        $manager->flush();
+
+        $this->addFlash(
+            'success',
+            "L'annonce <strong>{$ad->getTitle()}</strong> a bien été supprimée !"
+        );
+
+        return $this->redirectToRoute("ads_index");
+    }
+
 }
