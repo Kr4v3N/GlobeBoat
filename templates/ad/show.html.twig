@@ -11,7 +11,7 @@
         <h1>{{ad.title}}</h1>
         <p>{{ad.introduction}}</p>
         <p class="h2">
-            <strong>{{ad.rooms}} cabines</strong> pour <strong>{{ad.price | number_format(2, ',', ' ')}}&euro;</strong> par semaine
+            <strong> Un yacht de {{ad.rooms}} cabines</strong> pour <strong>{{ad.price | number_format(2, ',', ' ')}}&euro;</strong> par jour à  {{ ad.departureCity }}
         </p>
 
         {% if app.user and app.user == ad.author %}

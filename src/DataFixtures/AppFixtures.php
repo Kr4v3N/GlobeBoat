@@ -7,8 +7,6 @@ use Faker\Factory;
 use App\Entity\Role;
 use App\Entity\User;
 use App\Entity\Image;
-use App\Entity\Booking;
-use App\Entity\Comment;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -34,6 +32,25 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('FR-fr');
+
+        // Creation d'un nouveau rôle
+        $adminRole = new Role();
+        $adminRole->setTitle('ROLE_ADMIN');
+
+        $manager->persist($adminRole);
+
+        // Creation d'un utilisateurs qui aura le rôle admin
+        $adminUser = new User();
+        $adminUser->setFirstName('Fayçal')
+                ->setLastName('Chena')
+                ->setEmail('goldama@gmail.com')
+                ->setHash($this->encoder->encodePassword($adminUser, 'password'))
+                ->setPicture('https://randomuser.me/api/portraits/men/16.jpg')
+                ->setIntroduction($faker->sentence())
+                ->setDescription('<p>' . join('</p><p>', $faker->paragraphs(3)) . '</p>')
+                ->addUserRole($adminRole);
+
+        $manager->persist($adminUser);
 
         // Gestion des utilisateurs
         $users = [];
@@ -80,7 +97,7 @@ class AppFixtures extends Fixture
                 ->setCoverImage($coverImage)
                 ->setIntroduction($introduction)
                 ->setContent($content)
-                ->setPrice(random_int(155, 1500))
+                ->setPrice(random_int(10055, 350500))
                 ->setRooms(mt_rand(1, 15))
                 ->setDepartureCity($departureCity)
                 ->setAuthor($user);

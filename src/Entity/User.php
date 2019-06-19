@@ -258,27 +258,62 @@ class User implements UserInterface
     }
 
 
-    public function getRoles() {
-
-        $roles = $this->userRoles->map(function($role){
-            return $role->getTitle();
-        })->toArray();
-
-        $roles[] = 'ROLE_USER';
-
-        return $roles;
+    /****************************************************************
+     *
+     * Implementation des 5 méthodes obligatoires de l'UserInterface
+     *
+    /****************************************************************
+     *
+     * Alternatively, the roles might be stored on a ``roles`` property,
+     * and populated in any number of different ways when the user object
+     * is created.
+     *
+     * Returns the roles granted to the user
+     *
+     * @return Role[] The user roles
+     */
+    public function getRoles()
+    {
+        return array('ROLE_USER');
     }
 
+    /**
+     * Returns the password used to authenticate the user.
+     *
+     * This should be the encoded password. On authentication, a plain-text
+     * password will be salted, encoded, and then compared to this value.
+     *
+     * @return string The password
+     */
     public function getPassword() {
+
         return $this->hash;
     }
 
+    /**
+     * Returns the salt that was originally used to encode the password.
+     *
+     * This can return null if the password was not encoded using a salt.
+     *
+     * @return string|null The salt
+     */
     public function getSalt() {}
-    
+
+    /**
+     * Returns the username used to authenticate the user.
+     * @return string
+     */
     public function getUsername() {
+
         return $this->email;
     }
 
+    /**
+     * Removes sensitive data from the user.
+     *
+     * This is important if, at any given point, sensitive information like
+     * the plain-text password is stored on this object.
+     */
     public function eraseCredentials() {}
 
     /**
@@ -309,65 +344,4 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * @return Collection|Booking[]
-     */
-    public function getBookings(): Collection
-    {
-        return $this->bookings;
-    }
-
-    public function addBooking(Booking $booking): self
-    {
-        if (!$this->bookings->contains($booking)) {
-            $this->bookings[] = $booking;
-            $booking->setBooker($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBooking(Booking $booking): self
-    {
-        if ($this->bookings->contains($booking)) {
-            $this->bookings->removeElement($booking);
-            // set the owning side to null (unless already changed)
-            if ($booking->getBooker() === $this) {
-                $booking->setBooker(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Comment[]
-     */
-    public function getComments(): Collection
-    {
-        return $this->comments;
-    }
-
-    public function addComment(Comment $comment): self
-    {
-        if (!$this->comments->contains($comment)) {
-            $this->comments[] = $comment;
-            $comment->setAuthor($this);
-        }
-
-        return $this;
-    }
-
-    public function removeComment(Comment $comment): self
-    {
-        if ($this->comments->contains($comment)) {
-            $this->comments->removeElement($comment);
-            // set the owning side to null (unless already changed)
-            if ($comment->getAuthor() === $this) {
-                $comment->setAuthor(null);
-            }
-        }
-
-        return $this;
-    }
 }
