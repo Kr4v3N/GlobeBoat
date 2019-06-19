@@ -14,6 +14,8 @@
             <strong> Un yacht de {{ad.rooms}} cabines</strong> pour <strong>{{ad.price | number_format(2, ',', ' ')}}&euro;</strong> par jour à  {{ ad.departureCity }}
         </p>
 
+        <a href="#" class="btn btn-primary">Réserver</a>
+
         {% if app.user and app.user == ad.author %}
 
             <a href="{{ path('ads_edit', {'slug': ad.slug}) }}" class="btn btn-secondary">Modifier l'annonce</a>
