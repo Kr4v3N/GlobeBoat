@@ -103,11 +103,10 @@ class User implements UserInterface
     }
 
     /**
-     * Permet d'initialiser le slug !
+     * Permet d'initialiser le slug automatiquement grâce aux événements de cycle de vie de l'entité
      *
      * @ORM\PrePersist
      * @ORM\PreUpdate
-     * 
      * @return void
      */
     public function initializeSlug() {
@@ -117,12 +116,16 @@ class User implements UserInterface
         }
     }
 
+    /**
+     * User constructor.
+     *
+     * ArrayCollection() c'est une surcouche des tableaux, avec plus de fonctionnalités (méthodes]
+     *
+     */
     public function __construct()
     {
         $this->ads = new ArrayCollection();
         $this->userRoles = new ArrayCollection();
-        $this->bookings = new ArrayCollection();
-        $this->comments = new ArrayCollection();
     }
 
     public function getId()
@@ -257,24 +260,31 @@ class User implements UserInterface
         return $this;
     }
 
-
     /****************************************************************
      *
      * Implementation des 5 méthodes obligatoires de l'UserInterface
      *
-    /****************************************************************
+    * /****************************************************************
      *
      * Alternatively, the roles might be stored on a ``roles`` property,
      * and populated in any number of different ways when the user object
      * is created.
      *
      * Returns the roles granted to the user
+     * Elle est appelée par le composant de sécurité pour connaitre
+     * les rôles d'un user
      *
      * @return Role[] The user roles
      */
-    public function getRoles()
-    {
-        return array('ROLE_USER');
+    public function getRoles() {
+
+        $roles = $this->userRoles->map(function($role){
+            return $role->getTitle();
+        })->toArray();
+
+        $roles[] = 'ROLE_USER';
+
+        return $roles;
     }
 
     /**
