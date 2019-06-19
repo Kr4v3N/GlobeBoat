@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Ad;
 use App\Form\AdType;
 use App\Repository\AdRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
@@ -39,7 +40,7 @@ class AdController extends Controller
      *
      * @param \Symfony\Component\HttpFoundation\Request  $request
      * @param \Doctrine\Common\Persistence\ObjectManager $manager
-     *
+     * @\Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted("ROLE_USER")
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/ads/new", name="ads_create")
@@ -86,6 +87,7 @@ class AdController extends Controller
      * @param \App\Entity\Ad                             $ad
      * @param \Symfony\Component\HttpFoundation\Request  $request
      * @param \Doctrine\Common\Persistence\ObjectManager $manager
+     * @Security("is_granted('ROLE_USER') and user === ad.getAuthor()", message="Cette annonce nous vous appartiens pas, impossible de la modifier")
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
