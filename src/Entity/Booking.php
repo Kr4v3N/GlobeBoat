@@ -64,9 +64,11 @@ class Booking
      *
      * @ORM\PrePersist
      * @ORM\PreUpdate
-     * 
+     *
      * @return void
+     * @throws \Exception
      */
+
     public function prePersist() {
         if(empty($this->createdAt)) {
             $this->createdAt = new \DateTime();
