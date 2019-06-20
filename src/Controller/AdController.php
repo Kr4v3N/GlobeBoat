@@ -87,7 +87,7 @@ class AdController extends Controller
      * @param \App\Entity\Ad                             $ad
      * @param \Symfony\Component\HttpFoundation\Request  $request
      * @param \Doctrine\Common\Persistence\ObjectManager $manager
-     * @Security("is_granted('ROLE_USER') and user === ad.getAuthor()", message="Cette annonce nous vous appartiens pas, impossible de la modifier")
+     * @Security("is_granted('ROLE_USER') and user === ad.getAuthor()")
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *

@@ -1,4 +1,9 @@
 @import url('./bootstrap.min.css');
+@import url('./normalize.css');
+
+body {
+    background-color: lightgray;
+}
 
 div.container, div.container-fluid {
     margin-top: 20px;
@@ -44,4 +49,8 @@ div.carousel-caption {
         max-width: 20px;
         max-height: 20px;
     }
+}
+
+.error {
+    margin-top: 150px;
 }
