@@ -44,9 +44,9 @@ class AppFixtures extends Fixture
         $adminUser = new User();
         $adminUser->setFirstName('Fayçal')
                 ->setLastName('Chena')
-                ->setEmail('goldama@gmail.com')
+                ->setEmail('test@gmail.com')
                 ->setHash($this->encoder->encodePassword($adminUser, 'password'))
-                ->setPicture('https://randomuser.me/api/portraits/men/16.jpg')
+                ->setPicture('https://randomuser.me/api/portraits/men/56.jpg')
                 ->setIntroduction($faker->sentence())
                 ->setDescription('<p>' . join('</p><p>', $faker->paragraphs(3)) . '</p>')
                 ->addUserRole($adminRole);
@@ -87,7 +87,7 @@ class AppFixtures extends Fixture
 
             $ad = new Ad();
 
-            $title = $faker->sentence();
+            $title = $faker->company();
             $coverImage = $faker->imageUrl(1000,350);
             $introduction = $faker->paragraph(2);
             $content = '<p>' . join ('</p><p>', $faker->paragraphs(5)).'</p>';
@@ -99,8 +99,8 @@ class AppFixtures extends Fixture
                 ->setCoverImage($coverImage)
                 ->setIntroduction($introduction)
                 ->setContent($content)
-                ->setPrice(random_int(10055, 350500))
-                ->setRooms(mt_rand(1, 15))
+                ->setPrice(random_int(4000, 45500))
+                ->setRooms(mt_rand(1, 12))
                 ->setDepartureCity($departureCity)
                 ->setAuthor($user);
 

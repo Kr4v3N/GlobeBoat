@@ -19,7 +19,10 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
  */
 class AdType extends ApplicationType
 {
-
+    /**
+     * @param \Symfony\Component\Form\FormBuilderInterface $builder
+     * @param array                                        $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -43,7 +46,7 @@ class AdType extends ApplicationType
             )
             ->add(
                 'departureCity',
-                TextType::class, $this->getConfiguration("La ville de départ", "Ville de départ")
+                TextType::class, $this->getConfiguration("Zone de navigation", "indiquez la zone de navigation")
             )
             ->add(
                 'content', 
@@ -69,6 +72,9 @@ class AdType extends ApplicationType
         ;
     }
 
+    /**
+     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

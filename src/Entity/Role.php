@@ -28,6 +28,11 @@ class Role
      */
     private $users;
 
+    /**
+     * ArrayCollection() c'est une surcouche des tableaux, avec plus de fonctionnalités (méthodes)
+     *
+     * Role constructor
+     */
     public function __construct()
     {
         $this->users = new ArrayCollection();

@@ -1,15 +1,36 @@
 {% extends 'base.html.twig' %}
 
-    {% block title %}Nos annonces{% endblock %}
+    {% block title %}Notre catalogue{% endblock %}
 
     {% block body %}
-    <div class="container">
-        <h1 class="my-5 pt-5 text-center">Voici nos merveilles</h1>
+
+        <div class="down"></div>
+
+        <div class="container">
+
+        <h1 class="my-5 pt-5 text-center ">Location de yachts</h1>
+
+        <hr>
+
+        <h5 class="text-center" >Si aucun de ces yachts ne répondent à vos attentes, veuillez nous contacter au 04 05 05 05 05</h5>
+        <hr>
 
         <div class="row">
+
             {% for ad in ads %}
+
                 {% include 'ad/_ad.html.twig' %}
+
             {% endfor %}
+
         </div>
+
     </div>
+
+    {% endblock %}
+
+    {% block javascripts %}
+
+        <script src="{{ asset('build/js/scrollDown.js') }}"></script>
+
     {% endblock %}

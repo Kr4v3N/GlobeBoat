@@ -14,6 +14,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class AccountType extends AbstractType
 {
+    /**
+     * @param \Symfony\Component\Form\FormBuilderInterface $builder
+     * @param array                                        $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -26,6 +30,9 @@ class AccountType extends AbstractType
         ;
     }
 
+    /**
+     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

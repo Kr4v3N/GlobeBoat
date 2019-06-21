@@ -14,8 +14,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\HasLifecycleCallbacks()
  * @UniqueEntity(
- *  fields={"email"},
- *  message="Un autre utilisateur s'est déjà inscrit avec cette adresse email, merci de la modifier"
+ *  fields={"email"}, message="Un autre utilisateur s'est déjà inscrit avec cette adresse email, merci de la modifier"
  * )
  */
 class User implements UserInterface
@@ -89,16 +88,12 @@ class User implements UserInterface
     private $userRoles;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Booking", mappedBy="booker")
+     * Permet de récuperer le nom et prénom au même temps
+     *
+     * @return string
      */
-    private $bookings;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="author", orphanRemoval=true)
-     */
-    private $comments;
-
     public function getFullName() {
+
         return "{$this->firstName} {$this->lastName}";
     }
 
@@ -119,7 +114,7 @@ class User implements UserInterface
     /**
      * User constructor.
      *
-     * ArrayCollection() c'est une surcouche des tableaux, avec plus de fonctionnalités (méthodes]
+     * ArrayCollection() c'est une surcouche des tableaux, avec plus de fonctionnalités (méthodes)
      *
      */
     public function __construct()

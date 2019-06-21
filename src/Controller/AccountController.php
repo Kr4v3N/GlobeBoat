@@ -5,25 +5,24 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\AccountType;
 use App\Form\RegistrationType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-
 
 /**
  * Class AccountController
  *
  * @package App\Controller
  */
-class AccountController extends Controller
+class AccountController extends AbstractController
 {
     /**
      * Permet d'afficher et de gérer le formulaire de connexion
      *
+     * @param \Symfony\Component\Security\Http\Authentication\AuthenticationUtils $utils
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/login", name="account_login")
@@ -53,7 +52,10 @@ class AccountController extends Controller
     /**
      * Permet d'afficher le formulaire d'inscription
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param \Symfony\Component\HttpFoundation\Request                             $request
+     * @param \Doctrine\Common\Persistence\ObjectManager                            $manager
+     * @param \Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface $encoder
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
      * @Route("/register", name="account_register")
      */
@@ -75,7 +77,7 @@ class AccountController extends Controller
 
             $this->addFlash(
                 'success',
-                "Votre compte a bien été créé ! Vous pouvez maintenant vous connecter !"
+                'Votre compte a bien été créé ! Vous pouvez maintenant vous connecter !'
             );
 
             return $this->redirectToRoute('account_login');
@@ -89,8 +91,11 @@ class AccountController extends Controller
     /**
      * Permet d'afficher et de traiter le formulaire de modification de profil
      *
+     * @param \Symfony\Component\HttpFoundation\Request  $request
+     * @param \Doctrine\Common\Persistence\ObjectManager $manager
      * @return \Symfony\Component\HttpFoundation\Response
      * @\Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted("ROLE_USER")
+     *
      * @Route("/account/profile", name="account_profile")
      */
     public function profile(Request $request, ObjectManager $manager)
@@ -108,7 +113,7 @@ class AccountController extends Controller
 
             $this->addFlash(
                 'success',
-                "Les données du profil ont été enregistrée avec succès !"
+                'Les données du profil ont été enregistrée avec succès !'
             );
         }
 
@@ -122,10 +127,12 @@ class AccountController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response
      * @\Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted("ROLE_USER")
+     *
      * @Route("/account", name="account_index")
      */
     public function myAccount()
     {
+
         return $this->render('user/index.html.twig', [
             'user' => $this->getUser()
         ]);

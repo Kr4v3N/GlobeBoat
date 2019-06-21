@@ -6,17 +6,17 @@ use App\Entity\Ad;
 use App\Form\AdType;
 use App\Repository\AdRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * Class AdController
  *
  * @package App\Controller
  */
-class AdController extends Controller
+class AdController extends AbstractController
 {
     /**
      * Permet d'afficher la liste des annonces de yachts en location
@@ -88,7 +88,6 @@ class AdController extends Controller
      * @param \Symfony\Component\HttpFoundation\Request  $request
      * @param \Doctrine\Common\Persistence\ObjectManager $manager
      * @Security("is_granted('ROLE_USER') and user === ad.getAuthor()")
-     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
      * @Route("/ads/{slug}/edit", name="ads_edit")
@@ -130,14 +129,14 @@ class AdController extends Controller
     /**
      * Permet d'afficher une seule annonce
      *
-     * @param                              $slug
-     * @param \App\Repository\AdRepository $repo
      * @return \Symfony\Component\HttpFoundation\Response
+     * @param \App\Entity\Ad $ad
      *
      * @Route("/ads/{slug}", name="ads_show")
      */
     public function show(Ad $ad)
     {
+
         return $this->render('ad/show.html.twig', [
             'ad' => $ad
         ]);
@@ -150,6 +149,7 @@ class AdController extends Controller
      * @param Ad $ad
      * @param ObjectManager $manager
      * @return \Symfony\Component\HttpFoundation\Response
+     *
      * @Route("/ads/{slug}/delete", name="ads_delete")
      */
     public function delete(Ad $ad, ObjectManager $manager) {
@@ -162,7 +162,7 @@ class AdController extends Controller
             "L'annonce <strong>{$ad->getTitle()}</strong> a bien été supprimée !"
         );
 
-        return $this->redirectToRoute("ads_index");
+        return $this->redirectToRoute('ads_index');
     }
 
 }

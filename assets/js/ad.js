@@ -29,3 +29,6 @@ function updateCounter() {
 
 updateCounter();
 handleDeleteButtons();
+
+
+

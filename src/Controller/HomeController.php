@@ -2,15 +2,15 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * Class HomeController
  *
  * @package App\Controller
  */
-class HomeController extends Controller
+class HomeController extends AbstractController
 {
     /**
      * Permet d'afficher la page d'accueil du site
@@ -20,8 +20,8 @@ class HomeController extends Controller
      * @Route("/", name="homepage")
      */
     public function home(){
+
         return $this->render('home.html.twig');
     }
 }
 
-?>

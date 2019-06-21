@@ -1,10 +1,6 @@
 {% extends 'base.html.twig' %}
 
-    {% block title %}Réserver l'annonce : {{ad.title}} !{% endblock %}
-
-    {% block stylesheets %}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
-    {% endblock %}
+    {% block title %}Réserver l'annonce : {{ad.title}} {% endblock %}
 
     {% block body %}
 
@@ -12,7 +8,7 @@
 
             <h1>Réservez pour l'annonce : <em>{{ ad.title }}</em></h1>
 
-            <p>Vous êtes sur le point de réserver le bien de <strong>{{ ad.author.fullName }}</strong>,
+            <p>Vous êtes sur le point de réserver le yacht de <strong>{{ ad.author.fullName }}</strong>,
                 dites nous tout, on s'occupe du reste !
             </p>
 
@@ -31,10 +27,12 @@
                     <div class="col">
                         {{form_row(form.endDate)}}
                     </div>
+
                 </div>
 
                 <h4 class="mt-2">Montant du séjour : <span id="amount">...</span> &euro;</h4>
-                <span id="days">0</span> nuit(s) à {{ad.price | number_format(2, ',', ' ')}} &euro; par nuit
+
+                <span id="days">0</span> nuit(s) à {{ ad.price | number_format(2, ',', ' ') }} &euro; par jour
 
                 <h4 class="mt-3">Vous avez un commentaire ?</h4>
                 {{ form_row(form.comment) }}
@@ -43,7 +41,7 @@
 
             <h2>Vous avez terminé !</h2>
 
-            <p>Vacances de rêve ? Peu importe, on est avec vous !</p>
+            <p>Vacances de rêve ? Organiser un événement ? Peu importe, on est avec vous !</p>
 
             <button type="submit" class="btn btn-success">Je réserve !</button>
 

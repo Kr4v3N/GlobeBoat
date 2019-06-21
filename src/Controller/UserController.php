@@ -3,10 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class UserController extends Controller
+/**
+ * Class UserController
+ *
+ * @package App\Controller
+ */
+class UserController extends AbstractController
 {
     /**
      * @Route("/user/{slug}", name="user_show")
