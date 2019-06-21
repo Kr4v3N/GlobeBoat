@@ -17,10 +17,10 @@
         "symfony/framework-bundle": "^4.1",
         "symfony/lts": "^4@dev",
         "symfony/monolog-bundle": "^3.1",
-        "symfony/orm-pack": "*",
+        "symfony/orm-pack": "^1.0.6",
         "symfony/process": "^4.1",
         "symfony/security-bundle": "^4.1",
-        "symfony/serializer-pack": "*",
+        "symfony/serializer-pack": "^1.0.2",
         "symfony/swiftmailer-bundle": "^3.1",
         "symfony/twig-bundle": "^4.1",
         "symfony/validator": "^4.1",
@@ -30,10 +30,11 @@
         "symfony/yaml": "^4.1"
     },
     "require-dev": {
-        "symfony/debug-pack": "*",
-        "symfony/dotenv": "^4.1",
+        "roave/security-advisories": "dev-master",
+        "symfony/debug-pack": "^1.0",
+        "symfony/dotenv": "^4.3",
         "symfony/maker-bundle": "^1.0",
-        "symfony/profiler-pack": "*",
+        "symfony/profiler-pack": "^1.0.4",
         "symfony/test-pack": "^1.0",
         "symfony/web-server-bundle": "^4.1"
     },
@@ -71,7 +72,8 @@
             "@auto-scripts"
         ],
         "compile": [
-            "php bin/console doctrine:migrations:migrate"
+            "php bin/console doctrine:migrations:migrate",
+            "php bin/console doctrine:fixtures:load --no-interaction --env=PROD"
         ]
     },
     "conflict": {

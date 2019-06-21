@@ -131,6 +131,9 @@
     "psr/log": {
         "version": "1.0.2"
     },
+    "roave/security-advisories": {
+        "version": "dev-master"
+    },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
         "recipe": {
