@@ -138,4 +138,16 @@ class AccountController extends AbstractController
         ]);
     }
 
+    /**
+     * Permet d'afficher la liste des réservations faites par l'utilisateur
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Route("/account/bookings", name="account_bookings")
+     */
+    public function bookings() {
+
+        return $this->render('account/bookings.html.twig');
+    }
+
 }

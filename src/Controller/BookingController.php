@@ -43,10 +43,22 @@ class BookingController extends AbstractController
             $booking->setBooker($user)
                     ->setAd($ad);
 
-            $manager->persist($booking);
-            $manager->flush();
+            // Si les dates ne sont pas disponibles, message d'erreur
+            if(!$booking->isBookableDates()) {
 
-            return $this->redirectToRoute('booking_show', ['id' => $booking->getId()]);
+                $this->addFlash(
+                    'warning',
+                    'Les dates que vous avez choisi ne peuvent être réservées : elles sont déjà prises.'
+                );
+
+            } else {
+
+                // Sinon enregistrement et redirection
+                $manager->persist($booking);
+                $manager->flush();
+
+                return $this->redirectToRoute('booking_show', ['id' => $booking->getId(), 'successAlert' => 1]);
+            }
         }
 
         return $this->render('booking/book.html.twig', [
@@ -69,6 +81,17 @@ class BookingController extends AbstractController
         return $this->render('booking/show.html.twig', [
             'booking' => $booking,
         ]);
+    }
+
+    /**
+     * Permet d'afficher la liste des réservations faites par l'utilisateur
+     *
+     * @Route("/account/bookings", name="account_bookings")
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function bookings() {
+        return $this->render('account/bookings.html.twig');
     }
 
 }

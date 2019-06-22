@@ -12,6 +12,7 @@ $blue_dark : rgba(21,101,192 ,1);
 $gray_light: lightgray;
 $blue_sky: darkblue;
 $white: white;
+$red: firebrick;
 
 body {
     background-color: $gray_light;
@@ -29,7 +30,7 @@ div.container, div.container-fluid {
     margin-top: 20px;
 }
 
-div.ad-title {
+div.ad-titles {
     padding: 2em;
     background-size: cover;
     background-position: center center;
@@ -75,6 +76,13 @@ div.carousel-caption {
     margin-top: 150px;
 }
 
+/*------------------------------*\
+       DISABLED DATES DAY
+\*------------------------------*/
+
+.datepicker table tr td.disabled, .datepicker table tr td.disabled:hover {
+    color: $red !important;
+}
 
 /*------------------------------*\
     ARROW SCROLL-DOWN ANIMATION
