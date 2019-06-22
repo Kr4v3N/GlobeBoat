@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Ad;
-use App\Form\AdType;
+use App\Form\AnnouncementType;
 use App\Repository\AdRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -49,7 +49,7 @@ class AdController extends AbstractController
     {
         $ad = new Ad();
 
-        $form = $this->createForm(AdType::class, $ad);
+        $form = $this->createForm(AnnouncementType::class, $ad);
 
         $form->handleRequest($request);
 //        dd($form);
@@ -97,7 +97,7 @@ class AdController extends AbstractController
     public function edit(Ad $ad, Request $request, ObjectManager $manager)
     {
 
-        $form = $this->createForm(AdType::class, $ad);
+        $form = $this->createForm(AnnouncementType::class, $ad);
 
         $form->handleRequest($request);
 

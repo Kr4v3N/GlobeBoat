@@ -17,7 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
  *
  * @package App\Form
  */
-class AdType extends ApplicationType
+class AnnouncementType extends ApplicationType
 {
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
