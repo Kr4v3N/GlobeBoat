@@ -50,7 +50,7 @@ class AdType extends ApplicationType
             )
             ->add(
                 'content', 
-                TextType::class, $this->getConfiguration("Description détaillée", "Tapez une description")
+                TextareaType::class, $this->getConfiguration("Description détaillée", "Tapez une description")
             )
             ->add(
                 'rooms', 
