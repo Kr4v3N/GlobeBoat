@@ -32,7 +32,7 @@ class AppFixtures extends Fixture
      */
     public function load(ObjectManager $manager)
     {
-        $faker = Factory::create('FR-fr');
+        $faker = Factory::create('fr_FR');
 
         // Creation d'un nouveau rôle
         $adminRole = new Role();
@@ -87,11 +87,11 @@ class AppFixtures extends Fixture
 
             $ad = new Ad();
 
-            $title = $faker->company();
+            $title = $faker->company(max(10, 15));
             $coverImage = $faker->imageUrl(1000,350);
             $introduction = $faker->paragraph(2);
             $content = '<p>' . join ('</p><p>', $faker->paragraphs(5)).'</p>';
-            $departureCity = $faker->state();
+            $departureCity = $faker->city();
 
             $user = $users[mt_rand(0, count($users) - 1)];
 
@@ -121,7 +121,6 @@ class AppFixtures extends Fixture
 
                 $createdAt = $faker->dateTimeBetween('-6 months');
                 $startDate = $faker->dateTimeBetween('-3 months');
-
                 // Gestion de la date de fin
                 $duration  = mt_rand(3, 10);
                 $endDate   = (clone $startDate)->modify("+$duration days");
