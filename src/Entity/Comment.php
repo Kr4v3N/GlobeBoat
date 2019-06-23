@@ -44,6 +44,20 @@ class Comment
      */
     private $author;
 
+    /**
+     * Permet de mettre en place la date de création
+     *
+     * @ORM\PrePersist
+     * @throws \Exception
+     * @return void
+     */
+    public function prePersist() {
+
+        if(empty($this->createdAt)) {
+            $this->createdAt = new \DateTime();
+        }
+    }
+
     public function getId()
     {
         return $this->id;
