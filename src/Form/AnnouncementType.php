@@ -27,21 +27,21 @@ class AnnouncementType extends ApplicationType
     {
         $builder
             ->add(
-                'title', 
-                TextType::class, $this->getConfiguration("Titre", "Tapez titre pour votre annonce")
+                'title',
+                TextType::class, $this->getConfiguration('Titre', "Tapez titre pour votre annonce")
             )
             ->add(
-                'slug', 
+                'slug',
                 TextType::class, $this->getConfiguration("Adresse web", "Tapez l'adresse web (automatique)", [
                     'required' => false
                 ])
             )
             ->add(
-                'coverImage', 
+                'coverImage',
                 UrlType::class, $this->getConfiguration("URL de l'image principale", "Donnez l'adresse d'une image")
             )
             ->add(
-                'introduction', 
+                'introduction',
                 TextType::class, $this->getConfiguration("Introduction", "Donnez une description globale de l'annonce")
             )
             ->add(
@@ -49,15 +49,15 @@ class AnnouncementType extends ApplicationType
                 TextType::class, $this->getConfiguration("Zone de navigation", "indiquez la zone de navigation")
             )
             ->add(
-                'content', 
+                'content',
                 TextareaType::class, $this->getConfiguration("Description détaillée", "Tapez une description")
             )
             ->add(
-                'rooms', 
+                'rooms',
                 IntegerType::class, $this->getConfiguration("Nombre de cabines", "Le nombre de cabines")
             )
             ->add(
-                'price', 
+                'price',
                 MoneyType::class, $this->getConfiguration("Prix par jour", "Indiquez le prix que vous voulez pour une journée")
             )
             ->add(

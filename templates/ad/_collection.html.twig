@@ -1,34 +1,28 @@
+    {% block _announcement_images_widget %}
 
-    {% block _ad_images_widget %}
-
-        <p>Ici, vous pouvez ajouter vos propres images !</p>
+        <p>Ici, vous pouvez ajouter vos differentes images</p>
 
         {{ form_widget(form) }}
 
         <input type="hidden" id="widgets-counter" value="0">
 
         <div class="form-group">
-
-            <button type="button" id="add-image" class="btn btn-primary">
-                <i class="fas fa-plus"></i>
-                Ajouter une image
-            </button>
-
+            <button type="button" id="add-image" class="btn btn-primary">Ajouter une image</button>
         </div>
 
     {% endblock %}
 
-    {% block _ad_images_entry_row %}
+    {% block _announcement_images_entry_row %}
 
         {{ form_widget(form) }}
 
     {% endblock %}
 
-    {% block _ad_images_entry_widget %}
+    {% block _announcement_images_entry_widget %}
 
         <div class="form-group" id="block_{{id}}">
 
-        {{ form_errors(form) }}
+            {{ form_errors(form) }}
 
             <div class="row">
 
@@ -40,11 +34,11 @@
                             {{ form_widget(form.url) }}
                             {{ form_errors(form.url) }}
                         </div>
-
                         <div class="col">
                             {{ form_widget(form.caption) }}
                             {{ form_errors(form.caption) }}
                         </div>
+
                     </div>
 
                 </div>

@@ -2,22 +2,22 @@
   "entrypoints": {
     "js/app": {
       "js": [
-        "/build/js/app.f67c8639.js"
+        "/build/js/app.js"
       ]
     },
     "js/ad": {
       "js": [
-        "/build/js/ad.5a04f5f8.js"
+        "/build/js/ad.js"
       ]
     },
     "js/scrollDown": {
       "js": [
-        "/build/js/scrollDown.be94f269.js"
+        "/build/js/scrollDown.js"
       ]
     },
     "css/app": {
       "css": [
-        "/build/css/app.b717540c.css"
+        "/build/css/app.css"
       ]
     }
   }
