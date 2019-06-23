@@ -1,0 +1,225 @@
+@import url('./bootstrap.min.css');
+@import url('./normalize.css');
+
+
+/*---------------*\
+      VARIABLES
+\*---------------*/
+
+$blue: rgba(92,107,192 ,1);
+$blue_clear: dodgerblue;
+$blue_dark : rgba(21,101,192 ,1);
+$gray_light: lightgray;
+$blue_sky: darkblue;
+$white: white;
+$red: firebrick;
+
+body {
+    background-color: $gray_light;
+    display : table;
+    width: 100%;
+}
+
+html, body {
+    height: 100%;
+}
+.main_title {
+    margin-top: 0;
+}
+div.container, div.container-fluid {
+    margin-top: 20px;
+}
+
+div.ad-titles {
+    padding: 2em;
+    background-size: cover;
+    background-position: center center;
+
+    h1, p {
+        color: white;
+        text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+    }
+
+    .btn {
+        margin-top: 2em;
+        font-size: 1.5em;
+        line-height: 1.5em;
+    }
+}
+
+div.carousel-caption {
+    text-shadow: 3px 3px 3px rgba(0,0,0, 0.5);
+}
+
+.avatar {
+    max-width: 128px;
+    max-height: 128px;
+    border-radius: 50%;
+
+    &.avatar-medium {
+        max-width: 64px;
+        max-height: 64px;
+    }
+
+    &.avatar-mini {
+        max-width: 24px;
+        max-height: 24px;
+    }
+
+    &.avatar-micro {
+        max-width: 20px;
+        max-height: 20px;
+    }
+}
+
+.error {
+    margin-top: 150px;
+}
+
+/*------------------------------*\
+       DISABLED DATES DAY
+\*------------------------------*/
+
+.datepicker table tr td.disabled, .datepicker table tr td.disabled:hover {
+    color: $red !important;
+}
+
+/*------------------------------*\
+    ARROW SCROLL-DOWN ANIMATION
+\*------------------------------*/
+
+%chevron_before-after {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 51%;
+    background: $blue_sky;
+}
+
+.bottom-scroll {
+    position: relative;
+    left: 50%;
+    display: inline-flex;
+}
+
+.scroll-down {
+    position: relative;
+    display: inline-flex;
+    margin-top: -100px;
+}
+
+.chevron {
+    position: absolute;
+    width: 35px;
+    height: 8px;
+    opacity: 0;
+    transform: scale3d(0.5, 0.5, 0.5);
+    animation: move 3s ease-out infinite;
+
+    &:first-child {
+        animation: move 3s ease-out 1s infinite;
+    }
+
+    &:nth-child(2) {
+        animation: move 3s ease-out 2s infinite;
+    }
+
+    &:before {
+        @extend %chevron_before-after;
+        left: 0;
+        transform: skew(0deg, 30deg);
+    }
+
+    &:after {
+        @extend %chevron_before-after;
+        right: 0;
+        width: 50%;
+        transform: skew(0deg, -30deg);
+    }
+}
+
+@keyframes move {
+    25% {
+        opacity: 1;
+
+    }
+
+    33% {
+        opacity: 1;
+        transform: translateY(30px);
+    }
+
+    67% {
+        opacity: 1;
+        transform: translateY(40px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(55px) scale3d(0.5, 0.5, 0.5);
+    }
+}
+
+
+/*----------------*\
+   RESET OUTLINE
+\*----------------*/
+
+* {
+    &:focus, &:active {
+        outline: none;
+    }
+}
+
+#add-image {
+    outline: none;
+}
+
+*::-moz-focus-inner {
+    border: none;
+}
+
+button.btn {
+    &.btn-primary, &.btn-success {
+        outline: none !important;
+    }
+}
+
+
+/*----------------*\
+       FOOTER
+\*----------------*/
+
+footer {
+    background: $blue_dark;
+    display : table-row;
+    height: 60px;
+    .fa-chevron-up {
+        font-size: 35px;
+        margin: 10px;
+        color: $blue_sky;
+        height: 30px;
+        &:hover {
+            font-size: 25px;
+            color: $blue_clear;
+        }
+    }
+}
+
+.copyright {
+    color:$white;
+    font-size: 20px;
+}
+
+.sf-toolbar-clearer {
+    height: 28px !important;
+}
+.nav-link {
+    font-size: 20px;
+}
+.main_title {
+    display: block;
+    text-align: center;
+    font-size: 40px;
+}
