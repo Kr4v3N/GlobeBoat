@@ -12,7 +12,8 @@ $blue_dark : rgba(21,101,192 ,1);
 $gray_light: lightgray;
 $blue_sky: darkblue;
 $white: white;
-$red: firebrick;
+$red: #EF5350;
+$silvery: rgb(178,34,34);
 
 body {
     background-color: $gray_light;
@@ -190,6 +191,12 @@ button.btn {
     height: 86px;
 }
 
+/*----------------*\
+       RATING
+\*----------------*/
+span.rating {
+    color: $silvery;
+}
 
 /*----------------*\
        FOOTER
