@@ -78,7 +78,58 @@
 
                 <hr>
 
+                {% if ad.comments|length > 0 %}
+
+                    <h2 class="mb-3">Commentaires de nos voyageurs :</h2>
+
+                    <div class="alert alert-info">
+
+                        <h4 class="alert-heading text-center">
+
+                            <div class="row align-items-center">
+
+                                <div class="col">
+                                    Note globale donnée par nos voyageurs
+                                </div>
+
+                                <div class="col">
+{#                                    {% include 'partials/rating.html.twig' %}#}
+                                    <br>
+                                    <small>(Calculée sur {{ ad.comments|length }} avis)</small>
+                                </div>
+
+                            </div>
+
+                        </h4>
+
+                    </div>
+
+                    {% for comment in ad.comments %}
+
+                        <div class="bg-light rounded mb-3 py-3 px-3">
+
+                            <strong>{{ comment.author.firstName }}</strong> a dit :
+
+                            <blockquote>
+                                {{comment.content}}
+                            </blockquote>
+
+                            <strong>Note donnée : {{ comment.rating }} </strong>
+
+                            {% include 'partials/rating.html.twig' with {'rating': comment.rating}%}
+
+                        </div>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <h2>Cette annonce n'a pas encore reçu de commentaires ...</h2>
+
+                {% endif %}
+
             </div>
+
 
             <div class="col">
 
@@ -98,6 +149,7 @@
                         </a>
                         <span class="badge badge-primary">{{a.ads | length}} annonces</span>
                     </div>
+
                 </div>
                 {{ a.description | raw }}
 

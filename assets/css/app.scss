@@ -186,6 +186,10 @@ button.btn {
     }
 }
 
+#account_description {
+    height: 86px;
+}
+
 
 /*----------------*\
        FOOTER
@@ -215,9 +219,11 @@ footer {
 .sf-toolbar-clearer {
     height: 28px !important;
 }
+
 .nav-link {
     font-size: 20px;
 }
+
 .main_title {
     display: block;
     text-align: center;
