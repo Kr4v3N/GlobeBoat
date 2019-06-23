@@ -20,6 +20,5 @@
 /node_modules/
 npm-debug.log
 ###< symfony/webpack-encore-bundle ###
-
 /.idea
 /public/css/
