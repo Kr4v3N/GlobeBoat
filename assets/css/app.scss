@@ -30,12 +30,21 @@ html, body {
     height: 100%;
 }
 
-.main_title {
-    margin-top: 0;
-}
-
 div.container, div.container-fluid {
     margin-top: 20px;
+}
+
+.lead {
+    margin-top: -40px;
+}
+
+.main-title {
+    margin-top: -20px !important;
+}
+
+.main-jumbotron {
+    padding-bottom: 15px;
+    padding-top: 30px;
 }
 
 div.ad-titles {
@@ -239,8 +248,8 @@ footer {
 
 .mentionlegals {
     a {
-        text-decoration: none; /* Les liens ne seront plus soulignés */
-        color: $white; /* Les liens seront en blanc au lieu de bleu */
+        text-decoration: none;
+        color: $white;
         font-size:24px }
 }
 
