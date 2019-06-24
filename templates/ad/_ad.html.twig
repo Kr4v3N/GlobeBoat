@@ -1,35 +1,35 @@
-{% set url = path('ads_show', {'slug': ad.slug}) %}
+    {% set url = path('ads_show', {'slug': ad.slug}) %}
 
-<div class="col-md-4">
-    <div class="card bg-light mb-3">
-        <div class="card-header text-center">
-            {{ ad.rooms }} cabine(s), <strong>{{ ad.price | number_format(2, ',', ' ') }}&euro; / jour</strong> <br>
+    <div class="col-md-4">
+        <div class="card bg-light mb-3">
+            <div class="card-header text-center">
+                {{ ad.rooms }} cabine(s), <strong>{{ ad.price | number_format(2, ',', ' ') }}&euro; / jour</strong> <br>
 
-            {% if ad.comments|length > 0 %}
-                {% include 'partials/rating.html.twig' with {'rating': ad.avgRatings} %}
-            {% else %}
-                <small>Pas encore noté</small>
-            {% endif %}
-        </div>
+                {% if ad.comments|length > 0 %}
+                    {% include 'partials/rating.html.twig' with {'rating': ad.avgRatings} %}
+                {% else %}
+                    <small>Pas encore noté</small>
+                {% endif %}
+            </div>
 
-        <a href="{{ url }}">
-            <img src="{{ ad.coverImage }}" alt="Image du bateau" style="height: 200px; width: 100%; display: block">
-        </a>
+            <a href="{{ url }}">
+                <img src="{{ ad.coverImage }}" alt="Image du bateau" style="height: 200px; width: 100%; display: block">
+            </a>
 
-        <div class="card-body">
-            <h4 class="card-title">
-                <a href="{{ url }}">
-                    {{ ad.title }}
-                </a>
-            </h4>
-            <p class="card-text">
-                {{ ad.introduction }}
-            </p>
-            <a href="{{ url }}" class="btn btn-primary float-right">En savoir plus !</a>
+            <div class="card-body">
+                <h4 class="card-title">
+                    <a href="{{ url }}">
+                        {{ ad.title }}
+                    </a>
+                </h4>
+                <p class="card-text">
+                    {{ ad.introduction }}
+                </p>
+                <a href="{{ url }}" class="btn btn-primary float-right">En savoir plus !</a>
 
-            {% if app.user and app.user == ad.author %}
-                <a href="{{ path('ads_edit', {'slug': ad.slug}) }}" class="btn btn-secondary">Modifier l'annonce</a>
-            {% endif %}
+                {% if app.user and app.user == ad.author %}
+                    <a href="{{ path('ads_edit', {'slug': ad.slug}) }}" class="btn btn-secondary">Modifier l'annonce</a>
+                {% endif %}
+            </div>
         </div>
     </div>
-</div>
