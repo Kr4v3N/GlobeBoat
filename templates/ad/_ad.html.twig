@@ -23,7 +23,7 @@
                     </a>
                 </h4>
                 <p class="card-text">
-                    {{ ad.introduction }}
+                    {{ ad.introduction| truncate(65) }}
                 </p>
                 <a href="{{ url }}" class="btn btn-primary float-right">En savoir plus !</a>
 
