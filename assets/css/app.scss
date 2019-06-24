@@ -15,6 +15,11 @@ $white: white;
 $red: #EF5350;
 $silvery: rgb(178,34,34);
 
+
+/*------------------*\
+       GENERAL
+\*------------------*/
+
 body {
     background-color: $gray_light;
     display : table;
@@ -24,9 +29,11 @@ body {
 html, body {
     height: 100%;
 }
+
 .main_title {
     margin-top: 0;
 }
+
 div.container, div.container-fluid {
     margin-top: 20px;
 }
@@ -81,6 +88,7 @@ div.carousel-caption {
     margin-top: 150px;
 }
 
+
 /*------------------------------*\
        DISABLED DATES DAY
 \*------------------------------*/
@@ -88,6 +96,7 @@ div.carousel-caption {
 .datepicker table tr td.disabled, .datepicker table tr td.disabled:hover {
     color: $red !important;
 }
+
 
 /*------------------------------*\
     ARROW SCROLL-DOWN ANIMATION
@@ -195,12 +204,19 @@ button.btn {
     height: 86px;
 }
 
+.nav-link {
+    font-size: 20px;
+}
+
+
 /*----------------*\
        RATING
 \*----------------*/
+
 span.rating {
     color: goldenrod;
 }
+
 
 /*----------------*\
        FOOTER
@@ -210,16 +226,6 @@ footer {
     background: $blue_dark;
     display : table-row;
     height: 60px;
-    .fa-chevron-up {
-        font-size: 35px;
-        margin: 10px;
-        color: $blue_sky;
-        height: 30px;
-        &:hover {
-            font-size: 25px;
-            color: $blue_clear;
-        }
-    }
 }
 
 .copyright {
@@ -231,8 +237,11 @@ footer {
     height: 28px !important;
 }
 
-.nav-link {
-    font-size: 20px;
+.mentionlegals {
+    a {
+        text-decoration: none; /* Les liens ne seront plus soulignés */
+        color: $white; /* Les liens seront en blanc au lieu de bleu */
+        font-size:24px }
 }
 
 .main_title {
