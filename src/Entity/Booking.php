@@ -60,23 +60,20 @@ class Booking
     private $comment;
 
     /**
-     * Callback appelé à chaque fois qu'on créé une réservation afin de calculer le mantant total
-     * grâce aux événements de cycle de vie de l'entité
+     * Callback appelé à chaque fois qu'on créé une réservation
      *
      * @ORM\PrePersist
      * @ORM\PreUpdate
      *
      * @return void
-     * @throws \Exception
      */
     public function prePersist() {
-
         if(empty($this->createdAt)) {
             $this->createdAt = new \DateTime();
         }
 
         if(empty($this->amount)) {
-            // prix de l'annonce * nombre de jours
+            // prix de l'annonce * nombre de jour
             $this->amount = $this->ad->getPrice() * $this->getDuration();
         }
     }
@@ -86,26 +83,21 @@ class Booking
      *
      * @return boolean
      */
-    public function isBookableDates()
-    {
+    public function isBookableDates() {
         // 1) Il faut connaitre les dates qui sont impossibles pour l'annonce
         $notAvailableDays = $this->ad->getNotAvailableDays();
-
         // 2) Il faut comparer les dates choisies avec les dates impossibles
-        $bookingDays = $this->getDays();
+        $bookingDays      = $this->getDays();
 
-        $formatDay = function ($day) {
-
+        $formatDay = function($day){
             return $day->format('Y-m-d');
         };
 
-        // Tableau contient les chaines de caractères de mes journées
-        $days = array_map($formatDay, $bookingDays);
+        // Tableau des chaines de caractères de mes journées
+        $days           = array_map($formatDay, $bookingDays);
+        $notAvailable   = array_map($formatDay, $notAvailableDays);
 
-        $notAvailable = array_map($formatDay, $notAvailableDays);
-
-        foreach ($days as $day) {
-
+        foreach($days as $day) {
             if(array_search($day, $notAvailable) !== false) return false;
         }
 
@@ -118,30 +110,20 @@ class Booking
      * @return array Un tableau d'objets DateTime représentant les jours de la réservation
      */
     public function getDays() {
-
         $resultat = range(
-
             $this->startDate->getTimestamp(),
             $this->endDate->getTimestamp(),
             24 * 60 * 60
         );
 
         $days =  array_map(function($dayTimestamp) {
-
             return new \DateTime(date('Y-m-d', $dayTimestamp));
-
         }, $resultat);
 
         return $days;
     }
 
-    /**
-     * Permet de calculer le nombre de jours de location
-     *
-     * @return mixed
-     */
     public function getDuration() {
-
         $diff = $this->endDate->diff($this->startDate);
         return $diff->days;
     }

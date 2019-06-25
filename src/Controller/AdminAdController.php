@@ -30,7 +30,7 @@ class AdminAdController extends AbstractController
 
     public function index(AdRepository $repo, $page)
     {
-        $limits = 6;
+        $limits = 7;
         $start = $page * $limits - $limits;
 
         $total = count($repo->findAll());

@@ -84,11 +84,11 @@ class AppFixtures extends Fixture
         }
 
         // Gestion des annonces
-        for($i = 1; $i <= 20; $i++) {
+        for($i = 1; $i <= 30; $i++) {
 
             $ad = new Ad();
 
-            $title = $faker->company(max(10, 15));
+            $title = $faker->company();
             $coverImage = $faker->imageUrl(1000,350);
             $introduction = $faker->paragraph(2);
             $content = '<p>' . join ('</p><p>', $faker->paragraphs(5)).'</p>';
