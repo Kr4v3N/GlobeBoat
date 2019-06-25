@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-    <a class="navbar-brand" href="{{ path('homepage') }}">SymBNB !</a>
+    <a class="navbar-brand" href="{{ path('homepage') }}">GloabBoat !</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -21,7 +21,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ path('admin_booking_index') }}">
                     <i class="fas fa-folder"></i>
                     Réservations
                 </a>
@@ -33,7 +33,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{path ('admin_user_index')}}">
                     <i class="fas fa-users"></i>
                     Utilisateurs
                 </a>

@@ -19,8 +19,13 @@ class AdminAdController extends AbstractController
 {
 
     /**
+     * @param \App\Repository\AdRepository $repo
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
      * @Route("/admin/ads", name="admin_ads_index")
+     *
      */
+
     public function index(AdRepository $repo)
     {
 
@@ -45,6 +50,7 @@ class AdminAdController extends AbstractController
         $form = $this->createForm(AnnouncementType::class, $ad);
 
         $form->handleRequest($request);
+//        dd($ad);
 
         if($form->isSubmitted() && $form->isValid()) {
             $manager->persist($ad);
@@ -52,7 +58,7 @@ class AdminAdController extends AbstractController
 
             $this->addFlash(
                 'success',
-                "L'annonce <strong>{$ad->getTitle()}</strong> a bien été enregistrée !"
+                "L'annonce <strong>{$ad->getTitle()}</strong> a bien été enregistrée"
             );
         }
 
