@@ -24,14 +24,20 @@ class AdController extends AbstractController
      * @param \App\Repository\AdRepository $repo
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @Route("/ads", name="ads_index")
+     * @Route("ads/{page<\d+>?1}", name="ads_index")
      */
-    public function index(AdRepository $repo)
+    public function index(AdRepository $repo, $page)
     {
-        $ads = $repo->findAll();
+        $limits = 6;
+        $start = $page * $limits - $limits;
+
+        $total = count($repo->findAll());
+        $pages = ceil($total / $limits);
 
         return $this->render('ad/index.html.twig', [
-            'ads' => $ads
+            'ads' => $repo->findBy([], [], $limits, $start),
+            'pages' => $pages,
+            'page' => $page
         ]);
     }
 

@@ -19,18 +19,27 @@ class AdminAdController extends AbstractController
 {
 
     /**
+     * @param int                          $page
+     * @return \Symfony\Component\HttpFoundation\Response
      * @param \App\Repository\AdRepository $repo
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @Route("/admin/ads", name="admin_ads_index")
-     *
+     * @Route("/admin/ads/{page<\d+>?1}", name="admin_ads_index")
      */
 
-    public function index(AdRepository $repo)
+
+    public function index(AdRepository $repo, $page)
     {
+        $limits = 6;
+        $start = $page * $limits - $limits;
+
+        $total = count($repo->findAll());
+        $pages = ceil($total / $limits);
 
         return $this->render('admin/ad/index.html.twig', [
-            'ads' => $repo->findAll()
+            'ads' => $repo->findBy([], [], $limits, $start),
+            'pages' => $pages,
+            'page' => $page
         ]);
     }
 

@@ -33,11 +33,24 @@
                 </div>
                 <div class="card-body">
 
+                    {% if hasError %}
+                        <div class="alert alert-warning">
+                            <p>Les informations que vous avez fournies ne sont pas bonnes.</p>
+                        </div>
+                    {% endif %}
+
                     <form method="post">
-                        <div class="form-group"><label for="_username">Email</label><input type="text" class="form-control" placeholder="Adresse email" name="_username" value=""></div>
-                        <div class="form-group"><label for="_password">Mot de passe</label><input type="password" class="form-control" placeholder="Mot de passe" name="_password"></div>
+
+                        <div class="form-group"><label for="_username">Email</label><input type="text"
+                            class="form-control" placeholder="Adresse email" name="_username" value="{{ username }}"></div>
+
+                        <div class="form-group"><label for="_password">Mot de passe</label><input type="password"
+                              class="form-control" placeholder="Mot de passe" name="_password"></div>
+
                         <div class="form-group">
+
                             <button type="submit" class="btn btn-primary">
+
                                 <i class="fas fa-lock-open"></i>
                                 Connexion !
                             </button>
@@ -45,8 +58,11 @@
                                 <i class="fas fa-arrow-circle-left"></i>
                                 Retour au site
                             </a>
+
                         </div>
+
                     </form>
+
                 </div>
             </div>
         </div>
