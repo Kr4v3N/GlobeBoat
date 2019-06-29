@@ -14,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class HomeController extends AbstractController
 {
+
     /**
      * Permet d'afficher la page d'accueil du site
      *
