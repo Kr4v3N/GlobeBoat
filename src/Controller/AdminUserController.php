@@ -19,13 +19,20 @@ use Doctrine\Common\Persistence\ObjectManager;
 class AdminUserController extends AbstractController
 {
     /**
-     * @Route("/admin/users", name="admin_user_index")
+     * @Route("/admin/users/{page<\d+>?1}", name="admin_user_index")
      */
-    public function index(UserRepository $repo)
+    public function index(UserRepository $repo, $page)
     {
+        $limits = 8;
+        $start = $page * $limits - $limits;
+
+        $total = count($repo->findAll());
+        $pages = ceil($total / $limits);
 
         return $this->render('admin/user/index.html.twig', [
-            'users' => $repo->findAll()
+            'users' => $repo->findBy([], [], $limits, $start),
+            'pages' => $pages,
+            'page' => $page
         ]);
     }
 
@@ -54,7 +61,7 @@ class AdminUserController extends AbstractController
 
             $this->addFlash(
                 'success',
-                "L'utilisateur n°{$user->getId()} a bien été modifié"
+                "L'utilisateur {$user->getFullName()} a bien été modifié"
             );
 
             return $this->redirectToRoute('admin_user_index');
@@ -81,7 +88,7 @@ class AdminUserController extends AbstractController
         {
             $this->addFlash(
                 'warning',
-                "Vous ne pouvez pas supprimer l'utilisateur <strong> {$user->getLastName()} </strong> car il possède des réservations"
+                "Vous ne pouvez pas supprimer l'utilisateur <strong> {$user->getFullName()} </strong> car il possède des réservations"
             );
         }else
             {

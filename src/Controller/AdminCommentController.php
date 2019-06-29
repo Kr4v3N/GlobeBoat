@@ -18,15 +18,20 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminCommentController extends AbstractController
 {
     /**
-     * @Route("/admin/comments", name="admin_comment_index")
+     * @Route("/admin/comments/{page<\d+>?1}", name="admin_comment_index")
      */
-    public function index(CommentRepository $repo)
+    public function index(CommentRepository $repo, $page)
     {
+        $limits = 6;
+        $start = $page * $limits - $limits;
 
-        $comments =  $repo->findAll();
+        $total = count($repo->findAll());
+        $pages = ceil($total / $limits);
 
         return $this->render('admin/comment/index.html.twig', [
-            'comments' => $comments,
+            'comments' => $repo->findBy([], [], $limits, $start),
+            'pages' => $pages,
+            'page' => $page
         ]);
     }
 

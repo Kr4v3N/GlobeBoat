@@ -1,12 +1,12 @@
 {% extends 'admin/base.html.twig' %}
 
-    {% block title %}Modification du profil utilisateur n°{{ user.id }}{% endblock %}
+    {% block title %}Modification du profil utilisateur de {{ user.fullName }}{% endblock %}
 
     {% block body %}
 
         <div class="container">
 
-            <h1 class="my-5 pt-5">Modification du profil utilisateur n°{{ user.id }}</h1>
+            <h1 class="my-5 pt-5">Modification du profil de {{ user.fullName }}</h1>
 
             {{ form_start(form) }}
 

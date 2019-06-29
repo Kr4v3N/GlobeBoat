@@ -3,6 +3,7 @@
     {% block title %} Bienvenue sur le meilleur réseau de location de yachts et bateaux. {% endblock %}
 
     {% block body %}
+{#        {{ dump(ads) }}#}
 
         <div class="container">
 
@@ -19,7 +20,7 @@
 
             </div>
 
-            <h2 class="h1 my-2">Nos yachts stars</h2>
+            <h2 class="h1 my-2">Nos meilleurs yachts</h2>
 
             <div class="bottom-scroll down">
                 <div class="scroll-down d-none d-lg-block">
@@ -32,116 +33,32 @@
             </div>
 
             <div class="row">
-
-                <div class="col-md-4" id="start">
-                    <div class="card bg-light mb-3">
-                        <div class="card-header text-center">
-                            1 cabine, <strong>78500&euro; / jour</strong>
-                            <br>
-                            <small>Pas encore noté</small>
-                        </div>
-                        <img src="https://lorempixel.com/1000/350/" alt="bateau" style="height: 200px; width: 100%; display: block;">
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                Magnifique bateau
-                            </h4>
-                            <p class="card-tex">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis culpa eaque inventore maxime nulla, praesentium.
-                                Ad atque dolore facere ipsum!
-                            </p>
-                            <a href="#" class="btn btn-secondary">En savoir plus</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card bg-light mb-3">
-                        <div class="card-header text-center">3 cabines , <strong>25150&euro; / jour</strong>
-                            <br>
-                            <small>Pas encore noté</small>
-                        </div>
-                        <img src="https://lorempixel.com/1000/400/" alt="bateau" style="height: 200px; width: 100%; display: block;">
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                Magnifique bateau
-                            </h4>
-                            <p class="card-tex">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis culpa eaque inventore maxime nulla, praesentium.
-                                Ad atque dolore facere ipsum!
-                            </p>
-                            <a href="#" class="btn btn-secondary">En savoir plus</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card bg-light mb-3">
-                        <div class="card-header text-center">
-                            7 cabines, <strong>111500&euro; / jour</strong>
-                            <br>
-                            <small>Pas encore noté</small>
-                        </div>
-                        <img src="https://lorempixel.com/1000/400/" alt="bateau" style="height: 200px; width: 100%; display: block;">
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                Magnifique bateau
-                            </h4>
-                            <p class="card-tex">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis culpa eaque inventore maxime nulla, praesentium.
-                                Ad atque dolore facere ipsum!
-                            </p>
-                            <a href="#" class="btn btn-secondary">En savoir plus</a>
-                        </div>
-                    </div>
-                </div>
+                {% for data in ads %}
+                    {% include 'ad/_ad.html.twig' with {'ad': data.annonce} %}
+                {% endfor %}
             </div>
 
-            <h2 class="h1 mt-3 mb-4"><strong>Nos propriétaires stars</strong></h2>
+            <h2 class="h1 mt-3 mb-4"><strong>Nos meilleurs propriétaires </strong></h2>
 
             <div class="row">
-
-                <div class="col">
-                    <div class="card border-secondary mb-3">
-                        <div class="card-body">
-                            <h4 class="card-title">Jacque Levasseur</h4>
-                            <hr>
-                            <div class="card-text">
-                                <img src="https://randomuser.me/api/portraits/men/83.jpg" alt="Avatar de Legrand" class="float-left mr-3">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, ipsum.</p>
-                                <a href="#" class="btn btn-success float-right">En savoir plus</a>
+                {% for data in users %}
+{#                    {{ dump(users) }}#}
+                    <div class="col">
+                        <div class="card border-secondary mb-3">
+                            <div class="card-body">
+                                <h4 class="card-title">{{data.user.fullName}}</h4>
+                                <hr>
+                                <div class="card-text">
+                                    <img src="{{data.user.picture}}" alt="Avatar de {{data.user.fullName}}" class="float-left mr-3">
+                                    <p>{{data.user.introduction|truncate(45)}}</p>
+                                    <a href="{{ path('user_show', {'slug': data.user.slug})}}" class="btn btn-success float-right">En savoir plus!</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="card border-secondary mb-3">
-                        <div class="card-body">
-                            <h4 class="card-title">Jean Dubois</h4>
-                            <hr>
-                            <div class="card-text">
-                                <img src="https://randomuser.me/api/portraits/men/31.jpg" alt="Avatar de Legrand" class="float-left mr-3">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, ipsum.</p>
-                                <a href="#" class="btn btn-success float-right">En savoir plus</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card border-secondary mb-3">
-                        <div class="card-body">
-                            <h4 class="card-title">Pierre Legrand</h4>
-                            <hr>
-                            <div class="card-text">
-                                <img src="https://randomuser.me/api/portraits/men/56.jpg" alt="Avatar de Legrand" class="float-left mr-3">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, ipsum.</p>
-                                <a href="#" class="btn btn-success float-right">En savoir plus</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                {% endfor %}
             </div>
-
         </div>
-
     {% endblock %}
 
     {% block javascripts %}

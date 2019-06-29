@@ -1,53 +1,79 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}Gestion des utilisateurs{% endblock %}
+    {% block title %}Gestion des utilisateurs{% endblock %}
 
-{% block body %}
+    {% block body %}
 
-    <div class="container-fluid">
-        <h1 class="my-5">Gestion des utilisateurs</h1>
+        <div class="container-fluid">
+            <h1 class="my-5">Gestion des utilisateurs</h1>
 
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Image</th>
-                <th>Prénom</th>
-                <th>Nom</th>
-                <th>Email</th>
-            </tr>
-            </thead>
-
-            <tbody>
-
-            {% for user in users %}
-
+            <table class="table table-hover">
+                <thead>
                 <tr>
-                    <td>{{user.id}}</td>
-                    <td><img src="{{user.picture}}" alt="" class="avatar avatar-micro"></td>
-                    <td>{{user.firstName}}</td>
-                    <td>{{user.lastName}}</td>
-                    <td>{{user.email}}</td>
-                    <td>
-                        <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-primary">
-                            <i class="fas fa-pen"></i>
-                        </a>
-
-                    </td>
-                    <td>
-                        <a href="{{ path('admin_user_delete', {'id': user.id}) }}" class="btn btn-danger">
-                            <i class="fas fa-trash"></i>
-                        </a>
-
-                    </td>
+                    <th>Id</th>
+                    <th>Image</th>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Introduction</th>
                 </tr>
+                </thead>
 
-            {% endfor %}
+                <tbody>
 
-            </tbody>
+                {% for user in users %}
 
-        </table>
+                    <tr>
+                        <td>{{user.id}}</td>
+                        <td><img src="{{user.picture}}" alt="" class="avatar avatar-micro"></td>
+                        <td>{{user.firstName}}</td>
+                        <td>{{user.lastName}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.introduction}}</td>
+                        <td>
+                            <a href="{{ path('admin_user_edit', {'id': user.id}) }}" class="btn btn-primary">
+                                <i class="fas fa-pen"></i>
+                            </a>
 
-    </div>
+                        </td>
+                        <td>
+                            {% if user.ads|length == 0 %}
+                            <a href="{{ path('admin_user_delete', {'id': user.id}) }}" data-confirm="Etes-vous certain de vouloir suprimer le compte de {{ user.fullName }}?" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            {% else %}
+                            <a href="{{ path('admin_user_delete', {'id': user.id}) }}"  class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            {% endif %}
 
-{% endblock %}
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+        <div class="d-flex justify-content-center">
+            <ul class="pagination">
+                <li class="page-item {% if page == 1 %}disabled{% endif %}">
+                    <a class="page-link" href="{{ path('admin_user_index', {'page': page - 1}) }}">&laquo;</a>
+                </li>
+                {% for i in 1..pages %}
+                    <li class="page-item {% if page == i %}active{% endif %}">
+                        <a class="page-link" href="{{ path('admin_user_index', {'page': i}) }}">{{ i }}</a>
+                    </li>
+                {% endfor %}
+                <li class="page-item {% if page == pages %}disabled{% endif %}">
+                    <a class="page-link" href="{{ path('admin_user_index', {'page': page + 1}) }}">&raquo;</a>
+                </li>
+            </ul>
+        </div>
+
+    {% endblock %}
+
+    {% block javascripts %}
+
+        <script src="{{ asset('build/js/confirmModal.js') }}"></script>
+        <script src="{{ asset('build/js/app.js') }}"></script>
+
+    {% endblock %}

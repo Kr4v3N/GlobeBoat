@@ -18,6 +18,7 @@ Encore
     .addEntry('js/app', './assets/js/app.js')
     .addEntry('js/ad', './assets/js/ad.js')
     .addEntry('js/scrollDown', './assets/js/scrollDown.js')
+    .addEntry('js/confirmModal', './assets/js/confirmModal.js')
     .addStyleEntry('css/app', './assets/css/app.scss')
 
     // uncomment if you use TypeScript

@@ -26,19 +26,15 @@
                 <tbody>
 
                 {% for ad in ads %}
+
                     <tr>
                         <td>{{ad.id}}</td>
 
                         <td>{{ad.title}}</td>
 
-                        <td>
-                            <img src="{{ad.author.picture}}" alt="Avatar de {{ad.author.fullName}}" class="avatar avatar-micro mr-2">
-                            {{ad.author.fullName}}
-                        </td>
+                        <td><img src="{{ad.author.picture}}" alt="Avatar de {{ad.author.fullName}}" class="avatar avatar-micro mr-2">{{ad.author.fullName}}</td>
 
-                        <td class="text-center">
-                            <span class="badge badge-primary rounded">{{ad.bookings | length}}</span>
-                        </td>
+                        <td class="text-center"><span class="badge badge-primary rounded">{{ad.bookings | length}}</span></td>
 
                         <td class="text-center">
                             <span class="badge badge-primary rounded">{{ad.avgRatings | number_format(1, ',', ' ')}}</span>
@@ -48,7 +44,12 @@
                             <a href="{{ path('admin_ads_edit', {'id': ad.id}) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                         </td>
                         <td>
+                            {% if ad.bookings | length == 0 %}
+                        <a href="{{ path('admin_ads_delete', {'id':ad.id}) }}" data-confirm="Etes-vous certain de vouloir supprimer cette annonce ?" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            {% else %}
                         <a href="{{ path('admin_ads_delete', {'id':ad.id}) }}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            {% endif %}
+
                         </td>
                     </tr>
                 {% endfor %}
@@ -73,5 +74,10 @@
                 </li>
             </ul>
         </div>
+
+    {% endblock %}
+    {% block javascripts %}
+
+        <script src="{{ asset('build/js/confirmModal.js') }}"></script>
 
     {% endblock %}

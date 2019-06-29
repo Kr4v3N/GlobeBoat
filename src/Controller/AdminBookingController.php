@@ -21,11 +21,18 @@ class AdminBookingController extends AbstractController
     /**
      * @Route("/admin/bookings/{page<\d+>?1}", name="admin_booking_index")
      */
-    public function index(BookingRepository $repo)
+    public function index(BookingRepository $repo, $page)
     {
+        $limits = 7;
+        $start = $page * $limits - $limits;
+
+        $total = count($repo->findAll());
+        $pages = ceil($total / $limits);
 
         return $this->render('admin/booking/index.html.twig', [
-            'bookings' => $repo->findAll()
+            'bookings' => $repo->findBy([], [], $limits, $start),
+            'pages' => $pages,
+            'page' => $page
         ]);
     }
 

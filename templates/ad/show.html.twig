@@ -97,11 +97,9 @@
                     {% else %}
                         <h2>Cette annonce n'a pas encore reçu de commentaires ...</h2>
                     {% endif %}
-
                 </div>
 
                 <div class="col">
-
                     {% set a = ad.author %}
                     <div class="row mb-3 align-items-center">
 
@@ -121,8 +119,10 @@
                     {{ a.description | raw }}
 
                 </div>
+
             </div>
 
         </div>
 
     {% endblock %}
+
