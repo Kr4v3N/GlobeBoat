@@ -7,7 +7,7 @@
 {% block body %}
 
     <div class="container">
-        <h1 class="my-5">Modification de l'annonce {{ad.title}}</h1>
+        <h1 class="my-5">Modification de l'annonce du yatch : {{ad.title}}</h1>
 
         {{ form_start(form) }}
 
@@ -36,7 +36,6 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Id</th>
                                 <th>Loueur</th>
                                 <th>Date de réservation</th>
                                 <th></th>
@@ -45,14 +44,8 @@
                             <tbody>
                             {% for booking in ad.bookings %}
                                 <tr>
-                                    <td>{{booking.id}}</td>
                                     <td>{{booking.booker.fullName}}</td>
                                     <td>{{booking.createdAt | date('d/m/Y H:i')}}</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary">
-                                            <i class="fas fa-pen"></i>
-                                        </a>
-                                    </td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -67,7 +60,6 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Id</th>
                                 <th>Loueur</th>
                                 <th>Note</th>
                                 <th>Commentaire</th>
@@ -77,14 +69,10 @@
                             <tbody>
                             {% for comment in ad.comments %}
                                 <tr>
-                                    <td>{{comment.id}}</td>
                                     <td>{{comment.author.fullName}}</td>
                                     <td>{{comment.rating}}</td>
                                     <td>{{comment.content}}</td>
                                     <td>
-                                        <a href="#" class="btn btn-primary">
-                                            <i class="fas fa-pen"></i>
-                                        </a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -142,5 +130,8 @@
             });
         });
     </script>
+
+    <script src="{{ asset('build/js/confirmModal.js') }}"></script>
+
 
 {% endblock %}

@@ -10,13 +10,13 @@
             <table class="table table-hover">
                 <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Date</th>
-                    <th>Visiteur</th>
+                    <th>Loueur</th>
                     <th>Annonce</th>
                     <th>Durée</th>
                     <th>Montant</th>
-                    <th></th>
+                    <th>Éditer</th>
+                    <th>Suprimer</th>
                 </tr>
                 </thead>
 
@@ -25,7 +25,6 @@
                 {% for booking in bookings %}
 
                     <tr>
-                        <td>{{booking.id}}</td>
                         <td>{{booking.createdAt|date('d/m/Y H:i')}}</td>
                         <td><img src="{{booking.booker.picture}}" alt="" class="avatar avatar-micro"> {{booking.booker.fullName}}</td>
                         <td>{{booking.ad.title}}</td>
