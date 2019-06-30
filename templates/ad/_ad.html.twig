@@ -28,7 +28,7 @@
                 <a href="{{ url }}" class="btn btn-primary float-right">En savoir plus !</a>
 
                 {% if app.user and app.user == ad.author %}
-                    <a href="{{ path('ads_edit', {'slug': ad.slug}) }}" class="btn btn-secondary">Modifier l'annonce</a>
+                    <a href="{{ path('ads_edit', {'slug': ad.slug}) }}" class="btn btn-secondary">Modifier</a>
                 {% endif %}
             </div>
         </div>

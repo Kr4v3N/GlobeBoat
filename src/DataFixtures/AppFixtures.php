@@ -43,8 +43,8 @@ class AppFixtures extends Fixture
 
         // Creation d'un utilisateurs qui aura le rôle admin
         $adminUser = new User();
-        $adminUser->setFirstName('Fayçal')
-                ->setLastName('Chena')
+        $adminUser->setFirstName('Nicolas')
+                ->setLastName('Lafontaine')
                 ->setEmail('test@gmail.com')
                 ->setHash($this->encoder->encodePassword($adminUser, 'password'))
                 ->setPicture('https://randomuser.me/api/portraits/men/56.jpg')

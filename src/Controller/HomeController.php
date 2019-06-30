@@ -26,7 +26,7 @@ class HomeController extends AbstractController
 
         return $this->render('home.html.twig', [
             'ads' => $adRepo->findBestAds(3),
-            'users' => $userRepo->findBestUsers(3)
+            'users' => $userRepo->findBestUsers(3),
 
         ]);
     }

@@ -14,6 +14,8 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class AdminAccountController extends AbstractController
 {
     /**
+     * Permet de ce connecter
+     *
      * @Route("/admin/login", name="admin_account_login")
      */
     public function login(AuthenticationUtils $utils)
