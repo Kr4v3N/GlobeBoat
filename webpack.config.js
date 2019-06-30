@@ -1,4 +1,4 @@
-var Encore = require('@symfony/webpack-encore');
+let Encore = require('@symfony/webpack-encore');
 
 Encore
     // the project directory where compiled assets will be stored
@@ -19,7 +19,10 @@ Encore
     .addEntry('js/ad', './assets/js/ad.js')
     .addEntry('js/scrollDown', './assets/js/scrollDown.js')
     .addEntry('js/confirmModal', './assets/js/confirmModal.js')
+    .addEntry('js/weatherMap', './assets/js/weatherMap.js')
     .addStyleEntry('css/app', './assets/css/app.scss')
+    .addStyleEntry('css/weatherMap', './assets/css/weatherMap.scss')
+
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()

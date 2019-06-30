@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:500i&display=swap');
+
+.body, html{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    text-align: center;
+    background: linear-gradient( #b3dced, #29b8e5);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.content{
+    flex: 1;
+}
+
+.header{
+    display: flex;
+}
+
+.h1{
+    font-size: 40px;
+    text-transform: uppercase;
+    color: #326292;
+    margin: 80px auto;
+}
+
+.name{
+    font-size: 60px;
+    letter-spacing: 0.3em;
+    margin-top: 20vh;
+}
+
+.icon{
+    margin-right: 20px;
+    margin-top: 15vh;
+}
+
+.row{
+    display: flex;
+&__menu{
+     justify-content: flex-end;
+ }
+&__weather{
+     justify-content: center;
+ }
+}
+
+.temp {
+    font-size: 100px;
+    flex: 0.9;
+    color: #326292;
+    margin-top: 17vh;
+
+}
+
+.weather{
+    font-size: 28px;
+    display: flex;
+    margin: 0 40px;
+& div {
+      padding: 20px;
+  }
+}
+
+.menu{
+    padding: 20px;
+    border-radius: 15px;
+    margin-left: 15px;
+    margin-bottom: 20px;
+    font-size: 25px;
+&__city{
+     width: 250px;
+     border: 4px solid #326292;
+     box-sizing: border-box;
+ }
+&__btn{
+     cursor: pointer;
+     background-color: orange;
+ }
+  &__btn:hover{
+    background-color: #326292;
+  }
+  &--loc{
+     width: 200px;
+     display: none;
+     margin: 20px;
+     padding-bottom: 30px;
+ }
+}
+
+
+/*----------------*\
+   RESET OUTLINE
+\*----------------*/
+
+.return {
+  text-decoration: none;
+  color: white !important;
+}
+
+
+/*------------------*\
+     MEDIA QUERY
+\*------------------*/
+
+@media (max-width: 992px) {
+    .col992px{
+        flex-direction: column;
+    }
+    .row__city{
+        justify-content: center;
+
+    }
+    .temp{
+        order: 1;
+    }
+    .row__menu{
+        justify-content: center;
+    }
+}
+
+@media (max-width: 760px) {
+    .header{
+        flex-direction: column;
+    }
+    .h1{
+        font-size: 30px;
+        margin: 10px 0 15px;
+    }
+    .name{
+        font-size: 30px;
+        margin: 0;
+        letter-spacing: 3px;
+    }
+    .icon{
+        margin: -8px 0 0 10px;
+    }
+    .temp{
+        font-size: 100px;
+    }
+    .menu--loc{
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .row{
+        flex-direction: column;
+&__menu{
+     justify-content: center;
+ }
+}
+.menu{
+    margin: 12px auto;
+&--search{
+     width: 210px;
+ }
+}
+
+}
