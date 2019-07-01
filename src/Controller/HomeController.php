@@ -18,6 +18,8 @@ class HomeController extends AbstractController
     /**
      * Permet d'afficher la page d'accueil du site
      *
+     * @param \App\Repository\AdRepository   $adRepo
+     * @param \App\Repository\UserRepository $userRepo
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/", name="homepage")
