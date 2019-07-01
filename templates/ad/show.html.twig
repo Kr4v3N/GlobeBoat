@@ -21,7 +21,12 @@
 
                     <a href="{{ path('ads_edit', {'slug': ad.slug}) }}" class="btn btn-secondary">Modifier l'annonce</a>
 
+                {% if ad.bookings | length == 0 %}
+{#                 {{ dump(ad.bookings) }}#}
                     <a href="{{ path('ads_delete', {'slug': ad.slug})}}" class="btn btn-danger" onclick="return confirm(`Êtes vous sur de vouloir supprimer l'annonce : {{ad.title}} ?`)">Supprimer l'annonce</a>
+                {% else %}
+                    <a href="" class="d-none btn btn-secondary disabled"></a>
+                {% endif %}
 
                 {% endif %}
 

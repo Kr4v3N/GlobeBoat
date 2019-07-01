@@ -16,7 +16,7 @@
                     <h1>Connectez vous !</h1>
 
                     {% if hasError %}
-                        <div class="alert alert-danger">Une erreur est survenue, le nom d'utilisateur ou alors le mot de passe est invalide</div>
+                        <div id="alertSlidUp" class="alert alert-danger">Une erreur est survenue, le nom d'utilisateur ou alors le mot de passe est invalide</div>
                     {% endif %}
 
                     <form action="{{ path('account_login') }}" method="post">
