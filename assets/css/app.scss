@@ -22,12 +22,6 @@ $silvery: rgb(178,34,34);
 
 body {
     background-color: $gray_light;
-    display : table;
-    width: 100%;
-}
-
-html, body {
-    height: 100%;
 }
 
 div.container, div.container-fluid {
@@ -185,7 +179,6 @@ div.carousel-caption {
 }
 
 
-
 /*----------------*\
    RESET OUTLINE
 \*----------------*/
@@ -234,12 +227,6 @@ span.rating {
 
 footer {
     background: $blue_dark;
-    display : table-row;
-    height: 60px;
-}
-
-.sf-toolbar-clearer {
-    height: 28px !important;
 }
 
 .mentionlegals {
@@ -247,10 +234,7 @@ footer {
         text-decoration: none;
         color: $white;
         font-size:20px }
-}
-
-.main_title {
-    display: block;
-    text-align: center;
-    font-size: 40px;
+    p {
+        margin-top: 15px;
+    }
 }
