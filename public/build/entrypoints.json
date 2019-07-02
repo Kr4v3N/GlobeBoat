@@ -2,37 +2,37 @@
   "entrypoints": {
     "js/app": {
       "js": [
-        "/build/js/app.js"
+        "/build/js/app.f67c8639.js"
       ]
     },
     "js/ad": {
       "js": [
-        "/build/js/ad.js"
+        "/build/js/ad.30a80b28.js"
       ]
     },
     "js/scrollDown": {
       "js": [
-        "/build/js/scrollDown.js"
+        "/build/js/scrollDown.be94f269.js"
       ]
     },
     "js/confirmModal": {
       "js": [
-        "/build/js/confirmModal.js"
+        "/build/js/confirmModal.3de8bb72.js"
       ]
     },
     "js/weatherMap": {
       "js": [
-        "/build/js/weatherMap.js"
+        "/build/js/weatherMap.ccaa19e2.js"
       ]
     },
     "css/app": {
       "css": [
-        "/build/css/app.css"
+        "/build/css/app.bc243df9.css"
       ]
     },
     "css/weatherMap": {
       "css": [
-        "/build/css/weatherMap.css"
+        "/build/css/weatherMap.24f1b158.css"
       ]
     }
   }
