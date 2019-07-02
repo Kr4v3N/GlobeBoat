@@ -29,12 +29,14 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Vous devez renseigner votre prénom")
+     * @Assert\Regex(pattern="/^[a-zA-Z]+$/", message="Le prénom ne peut contenir que des lettres")
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Vous devez renseigner votre nom de famille")
+     * @Assert\Regex(pattern="/^[a-zA-Z]+$/", message="Le nom ne peut contenir que des lettres")
      */
     private $lastName;
 
@@ -63,12 +65,14 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(min=10, minMessage="Votre introduction doit faire au moins 10 caractères")
+     * @Assert\Regex(pattern="/^[a-zA-Z0-9]+$/", message="L'introduction ne peut contenir que des caractères alphanumeriques")
      */
     private $introduction;
 
     /**
      * @ORM\Column(type="text")
      * @Assert\Length(min=100, minMessage="Votre description doit faire au moins 100 caractères")
+     * @Assert\Regex(pattern="/^[a-zA-Z0-9]+$/", message="L'introduction ne peut contenir que des caractères alphanumeriques")
      */
     private $description;
 

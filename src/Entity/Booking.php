@@ -56,17 +56,18 @@ class Booking
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\Regex(pattern="/^[a-zA-Z0-9]+$/", message="Le commentaire ne peut contenir que des caractères alphanumeriques")
      */
     private $comment;
 
     /**
      * Callback appelé à chaque fois qu'on créé une réservation
-     *
+     * @throws \Exception
      * @ORM\PrePersist
      * @ORM\PreUpdate
-     *
      * @return void
      */
+
     public function prePersist() {
         if(empty($this->createdAt)) {
             $this->createdAt = new \DateTime();
