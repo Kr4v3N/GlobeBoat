@@ -40,7 +40,7 @@ class Booking
     /**
      * @ORM\Column(type="datetime")
      * @Assert\Date(message="Attention, la date de départ doit être au bon format !")
-     * @Assert\GreaterThan(propertyPath="startDate", message="La date de départ doit être plus éloignée que la date d'arrivée !")
+     * @Assert\GreaterThan(propertyPath="startDate", message="La date de départ doit être plus éloignée que la date d'arrivée")
      */
     private $endDate;
 
@@ -56,7 +56,7 @@ class Booking
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Assert\Regex(pattern="/^[a-zA-Z0-9]+$/", message="Le commentaire ne peut contenir que des caractères alphanumeriques")
+     * @Assert\Regex(pattern="/^[a-zA-Z0-9.,;\-:éèçà?\s']+$/", message="Le commentaire n'est pas au bon format")
      */
     private $comment;
 

@@ -29,7 +29,7 @@ class Ad
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(min=4, max=255, minMessage="Le titre doit faire plus de 4 caractères !", maxMessage="Le titre ne peut pas faire plus de 255 caractères")
-     * @Assert\Regex(pattern="/^[a-zA-Z0-9]+$/", message="Le titre ne peut contenir que des caractères alphanumeriques")
+     * @Assert\Regex(pattern="/^[a-zA-Z0-9.,;\-:éèçà?\s']+$/", message="Le titre ne peut contenir que des caractères alphanumeriques")
      */
     private $title;
 
@@ -46,14 +46,14 @@ class Ad
     /**
      * @ORM\Column(type="text")
      * @Assert\Length(min=20, minMessage="Votre introduction doit faire plus de 20 caractères")
-     * @Assert\Regex(pattern="/^[a-zA-Z0-9]+$/", message="L'introduction ne peut contenir que des caractères alphanumeriques")
+     * @Assert\Regex(pattern="/^[a-zA-Z0-9.,;\-:éèçà?\s']+$/", message="L'introduction n'est pas au bon format")
      */
     private $introduction;
 
     /**
      * @ORM\Column(type="text")
      * @Assert\Length(min=100, minMessage="Votre description ne peut pas faire moins de 100 caractères")
-     * @Assert\Regex(pattern="/^[a-zA-Z0-9]+$/", message="Le contenu ne peut contenir que des caractères alphanumeriques")
+     * @Assert\Regex(pattern="/^[a-zA-Z0-9.,;\-:éèçà?\s']+$/", message="Le contenu n'est pas au bon format")
      */
     private $content;
 
@@ -87,13 +87,12 @@ class Ad
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Regex(pattern="/^[a-zA-Z0-9]+$/", message="Le zone de navigation ne peut contenir que des caractères alphanumeriques")
+     * @Assert\Regex(pattern="/^[a-zA-Z0-9]+$/", message="Le zone de navigation n'est pas au bon format")
      */
     private $departureCity;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="ad", orphanRemoval=true)
-     * @Assert\Regex(pattern="/^[a-zA-Z0-9]+$/", message="Le commentaire ne peut contenir que des caractères alphanumeriques")
      */
     private $comments;
 

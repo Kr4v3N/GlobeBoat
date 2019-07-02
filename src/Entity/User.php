@@ -58,21 +58,21 @@ class User implements UserInterface
     private $hash;
 
     /**
-     * @Assert\EqualTo(propertyPath="hash", message="Vous n'avez pas correctement confirmé votre mot de passe !")
+     * @Assert\EqualTo(propertyPath="hash", message="Vous n'avez pas correctement confirmé votre mot de passe")
      */
     public $passwordConfirm;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(min=10, minMessage="Votre introduction doit faire au moins 10 caractères")
-     * @Assert\Regex(pattern="/^[a-zA-Z0-9]+$/", message="L'introduction ne peut contenir que des caractères alphanumeriques")
+     * @Assert\Regex(pattern="/^[a-zA-Z0-9.,;\-:éèçà?\s']+$/", message="L'introduction n'est pas au bon format")
      */
     private $introduction;
 
     /**
      * @ORM\Column(type="text")
      * @Assert\Length(min=100, minMessage="Votre description doit faire au moins 100 caractères")
-     * @Assert\Regex(pattern="/^[a-zA-Z0-9]+$/", message="L'introduction ne peut contenir que des caractères alphanumeriques")
+     * @Assert\Regex(pattern="/^[a-zA-Z0-9.,;\-:éèçà?\s']+$/", message="La description n'est pas au bon format")
      */
     private $description;
 

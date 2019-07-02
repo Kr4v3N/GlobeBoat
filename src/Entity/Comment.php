@@ -31,7 +31,7 @@ class Comment
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\Regex(pattern="/^[a-zA-Z0-9]+$/", message="Le commentaire ne peut contenir que des caractères alphanumeriques")
+     * @Assert\Regex(pattern="/^[a-zA-Z0-9.,;\-:éèçà?\s']+$/", message="Le contenu n'est pas au bon format")
      */
     private $content;
 
