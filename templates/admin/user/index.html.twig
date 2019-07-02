@@ -35,7 +35,7 @@
 
                         </td>
                         <td>
-                            {% if user.ads|length == 0 %}
+                            {% if user.ads|length == 0 and user.bookings|length == 0 %}
                             <a href="{{ path('admin_user_delete', {'id': user.id}) }}" data-confirm="Etes-vous certain de vouloir suprimer le compte de {{ user.fullName }}?" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                             {% else %}
                             <a href="{{ path('admin_user_delete', {'id': user.id}) }}"  class="btn btn-danger"><i class="fas fa-trash"></i></a>

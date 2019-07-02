@@ -84,24 +84,29 @@ class AdminUserController extends AbstractController
      */
     public function delete(User $user, ObjectManager $manager)
     {
-        if(count($user->getBookings()) > 0)
+        if (count($user->getBookings()) > 0)
         {
             $this->addFlash(
                 'warning',
-                "Vous ne pouvez pas supprimer l'utilisateur <strong> {$user->getFullName()} </strong> car il possède des réservations"
+                "Vous ne pouvez pas supprimer l'utilisateur <strong> {$user->getFullName()} </strong> car il possède au moins une réservation"
+            );
+        }
+        elseif (count($user->getAds()) > 0)
+        {
+            $this->addFlash(
+                'warning',
+                "Vous ne pouvez pas supprimer l'utilisateur <strong> {$user->getFullName()} </strong> car il possède au moins une annonce"
             );
         }else
-            {
+        {
+            $manager->remove($user);
+            $manager->flush();
 
-                $manager->remove($user);
-                $manager->flush();
-
-                $this->addFlash(
-                    'success',
-                    "L'utilisateur a bien été supprimé"
-                );
-            }
-
+            $this->addFlash(
+                'success',
+                "L'utilisateur a bien été supprimé"
+            );
+        }
         return $this->redirectToRoute('admin_user_index');
     }
 }
