@@ -20,8 +20,13 @@ $silvery: rgb(178,34,34);
        GENERAL
 \*------------------*/
 
+html{
+    height: 100%;
+}
+
 body {
     background-color: $gray_light;
+    min-height: 100%;
 }
 
 div.container, div.container-fluid {
@@ -227,6 +232,7 @@ span.rating {
 
 footer {
     background: $blue_dark;
+    padding-bottom: 0.4rem !important;
 }
 
 .mentionlegals {
