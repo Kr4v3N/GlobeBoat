@@ -29,7 +29,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Vous devez renseigner votre prénom")
-     * @Assert\Regex(pattern="/^[a-zA-Z]+$/", message="Le prénom ne peut contenir que des lettres")
+     * @Assert\Regex(pattern="/^[a-zA-Zéç]+$/", message="Le prénom ne peut contenir que des lettres")
      */
     private $firstName;
 
