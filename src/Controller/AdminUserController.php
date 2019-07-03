@@ -30,7 +30,7 @@ class AdminUserController extends AbstractController
         $pages = ceil($total / $limits);
 
         return $this->render('admin/user/index.html.twig', [
-            'users' => $repo->findBy([], [], $limits, $start),
+            'users' => $repo->findBy([], ['id'=> 'DESC'], $limits, $start),
             'pages' => $pages,
             'page' => $page
         ]);

@@ -30,7 +30,7 @@ class AdminBookingController extends AbstractController
         $pages = ceil($total / $limits);
 
         return $this->render('admin/booking/index.html.twig', [
-            'bookings' => $repo->findBy([], [], $limits, $start),
+            'bookings' => $repo->findBy([], ['createdAt'=> 'DESC'], $limits, $start),
             'pages' => $pages,
             'page' => $page
         ]);

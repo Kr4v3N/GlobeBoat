@@ -29,7 +29,7 @@ class AdminCommentController extends AbstractController
         $pages = ceil($total / $limits);
 
         return $this->render('admin/comment/index.html.twig', [
-            'comments' => $repo->findBy([], [], $limits, $start),
+            'comments' => $repo->findBy([], ['createdAt'=> 'DESC'], $limits, $start),
             'pages' => $pages,
             'page' => $page
         ]);
