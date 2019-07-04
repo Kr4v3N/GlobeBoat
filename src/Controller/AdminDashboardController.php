@@ -20,6 +20,7 @@ class AdminDashboardController extends AbstractController
     {
 
         $users = $manager->createQuery('SELECT COUNT(a) FROM App\Entity\User a')->getSingleScalarResult();
+//        dump($users);
         $ads = $manager->createQuery('SELECT COUNT(b) FROM App\Entity\Ad b')->getSingleScalarResult();
         $bookings = $manager->createQuery('SELECT COUNT(c) FROM App\Entity\Booking c')->getSingleScalarResult();
         $comments= $manager->createQuery('SELECT COUNT(d) FROM App\Entity\Comment d')->getSingleScalarResult();

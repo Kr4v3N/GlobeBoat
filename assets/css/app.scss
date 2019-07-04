@@ -1,3 +1,7 @@
+/*---------------*\
+      IMPORTS
+\*---------------*/
+
 @import url('./bootstrap.min.css');
 @import url('./normalize.css');
 
@@ -11,9 +15,10 @@ $blue_clear: dodgerblue;
 $blue_dark : rgba(21,101,192 ,1);
 $gray_light: lightgray;
 $blue_sky: darkblue;
-$white: white;
+$white: #fff;
 $red: #EF5350;
 $silvery: rgb(178,34,34);
+$goldYellow: goldenrod;
 
 
 /*------------------*\
@@ -52,7 +57,7 @@ div.ad-titles {
     background-position: center center;
 
     h1, p {
-        color: white;
+        color: $white;
         text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
     }
 
@@ -222,7 +227,7 @@ button.btn {
 \*----------------*/
 
 span.rating {
-    color: goldenrod;
+    color: $goldYellow;
 }
 
 
@@ -240,4 +245,57 @@ footer {
         text-decoration: none;
         color: $white;
         font-size:20px }
+}
+
+
+/*------------------*\
+     MEDIA QUERIES
+\*------------------*/
+
+@media screen and (max-width: 800px) {
+    .main-title {
+        font-size: 50px;
+        padding-bottom: 20px;
+    }
+    .lead {
+        font-size: medium;
+    }
+    .title-secondary{
+        font-size: 30px;
+    }
+    .introduction {
+        font-size: small;
+    }
+}
+
+@media screen and (max-width: 414px) {
+  .main-title {
+      font-size: 45px;
+      padding-bottom: 25px;
+  }
+    .lead {
+        font-size: small;
+    }
+  .title-secondary{
+      font-size: 25px;
+  }
+  .introduction {
+      font-size: small;
+  }
+}
+
+@media screen and (max-width: 300px) {
+    .main-title {
+        font-size: 35px;
+        padding-bottom: 25px;
+    }
+    .title-secondary{
+        font-size: 20px;
+    }
+    .lead {
+        font-size: 15px;
+    }
+    .introduction {
+        font-size: small;
+    }
 }
