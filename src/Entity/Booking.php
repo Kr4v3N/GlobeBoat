@@ -32,7 +32,6 @@ class Booking
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      * @Assert\Date(message="Attention, la date d'arrivée doit être au bon format !")
      * @Assert\GreaterThan("today", message="La date d'arrivée doit être ultérieure à la date d'aujourd'hui", groups={"front"})
      */
@@ -40,7 +39,6 @@ class Booking
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      * @Assert\Date(message="Attention, la date de départ doit être au bon format !")
      * @Assert\GreaterThan(propertyPath="startDate", message="La date de départ doit être plus éloignée que la date d'arrivée")
      */
@@ -53,13 +51,11 @@ class Booking
 
     /**
      * @ORM\Column(type="float")
-     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      */
     private $amount;
 
     /**
      * @ORM\Column(type="text", nullable=true)
-     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      * @Assert\Regex(pattern="/^[a-zA-Z0-9.,;\-:éèçà?\s']+$/", message="Le commentaire n'est pas au bon format")
      */
     private $comment;

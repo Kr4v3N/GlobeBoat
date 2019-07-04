@@ -42,40 +42,34 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      * @Assert\Email(message="Veuillez renseigner un email valide !")
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      * @Assert\Url(message="Veuillez donner une URL valide pour votre avatar !")
      */
     private $picture;
 
     /**
-     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      * @ORM\Column(type="string", length=255)
      */
     private $hash;
 
     /**
-     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      * @Assert\EqualTo(propertyPath="hash", message="Vous n'avez pas correctement confirmé votre mot de passe")
      */
     public $passwordConfirm;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      * @Assert\Length(min=10, minMessage="Votre introduction doit faire au moins 10 caractères")
      * @Assert\Regex(pattern="/^[a-zA-Z0-9.,;\-:éèçà?\s']+$/", message="L'introduction n'est pas au bon format")
      */
     private $introduction;
 
     /**
-     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      * @ORM\Column(type="text")
      * @Assert\Length(min=100, minMessage="Votre description doit faire au moins 100 caractères")
      * @Assert\Regex(pattern="/^[a-zA-Z0-9.,;\-:éèçà?\s']+$/", message="La description n'est pas au bon format")
@@ -276,7 +270,7 @@ class User implements UserInterface
      *
      * Implementation des 5 méthodes obligatoires de l'UserInterface
      *
-    * /****************************************************************
+     * /****************************************************************
      *
      * Alternatively, the roles might be stored on a ``roles`` property,
      * and populated in any number of different ways when the user object
