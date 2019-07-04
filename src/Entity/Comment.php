@@ -26,11 +26,13 @@ class Comment
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      */
     private $rating;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      * @Assert\Regex(pattern="/^[a-zA-Z0-9.,;\-:éèçà?\s']+$/", message="Le contenu n'est pas au bon format")
      */
     private $content;

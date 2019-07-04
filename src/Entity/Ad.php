@@ -28,6 +28,7 @@ class Ad
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      * @Assert\Length(min=4, max=255, minMessage="Le titre doit faire plus de 4 caractères !", maxMessage="Le titre ne peut pas faire plus de 255 caractères")
      * @Assert\Regex(pattern="/^[a-zA-Z0-9.,;\-:éèçà?\s']+$/", message="Le titre ne peut contenir que des caractères alphanumeriques")
      */
@@ -40,11 +41,13 @@ class Ad
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      */
     private $price;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      * @Assert\Length(min=20, minMessage="Votre introduction doit faire plus de 20 caractères")
      * @Assert\Regex(pattern="/^[a-zA-Z0-9.,;\-:éèçà?\s']+$/", message="L'introduction n'est pas au bon format")
      */
@@ -52,6 +55,7 @@ class Ad
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      * @Assert\Length(min=100, minMessage="Votre description ne peut pas faire moins de 100 caractères")
      * @Assert\Regex(pattern="/^[a-zA-Z0-9.,;\-:éèçà?\s']+$/", message="Le contenu n'est pas au bon format")
      */
@@ -59,12 +63,14 @@ class Ad
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      * @Assert\Url()
      */
     private $coverImage;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      */
     private $rooms;
 
@@ -87,11 +93,13 @@ class Ad
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      * @Assert\Regex(pattern="/^[a-zA-Z0-9]+$/", message="Le zone de navigation n'est pas au bon format")
      */
     private $departureCity;
 
     /**
+     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="ad", orphanRemoval=true)
      */
     private $comments;

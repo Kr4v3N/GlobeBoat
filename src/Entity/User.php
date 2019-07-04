@@ -48,6 +48,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      * @Assert\Url(message="Veuillez donner une URL valide pour votre avatar !")
      */
     private $picture;
@@ -64,12 +65,14 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      * @Assert\Length(min=10, minMessage="Votre introduction doit faire au moins 10 caractères")
      * @Assert\Regex(pattern="/^[a-zA-Z0-9.,;\-:éèçà?\s']+$/", message="L'introduction n'est pas au bon format")
      */
     private $introduction;
 
     /**
+     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      * @ORM\Column(type="text")
      * @Assert\Length(min=100, minMessage="Votre description doit faire au moins 100 caractères")
      * @Assert\Regex(pattern="/^[a-zA-Z0-9.,;\-:éèçà?\s']+$/", message="La description n'est pas au bon format")
