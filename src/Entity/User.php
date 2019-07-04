@@ -42,6 +42,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      * @Assert\Email(message="Veuillez renseigner un email valide !")
      */
     private $email;
@@ -54,11 +55,13 @@ class User implements UserInterface
     private $picture;
 
     /**
+     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      * @ORM\Column(type="string", length=255)
      */
     private $hash;
 
     /**
+     * @Assert\NotBlank(message="Cette valeur ne doit pas être vide.")
      * @Assert\EqualTo(propertyPath="hash", message="Vous n'avez pas correctement confirmé votre mot de passe")
      */
     public $passwordConfirm;
