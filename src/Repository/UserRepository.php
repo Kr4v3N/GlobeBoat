@@ -33,7 +33,7 @@ class UserRepository extends ServiceEntityRepository
             // Je recupère la moyenne des notations données aux commentaires des annonces qui appartiennent à l'utilisateur
                     ->select('u as user, AVG(c.rating) as avgRatings, COUNT(c) as sumComments')
                     ->groupBy('u')
-            // il faut qu'il ai plus de 3 commentaires
+            // il faut qu'il ai plus de 5 commentaires
                     ->having('sumComments > 5')
                     ->orderBy('avgRatings', 'DESC')
                     ->setMaxResults($limit)

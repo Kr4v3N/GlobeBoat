@@ -71,13 +71,13 @@
                     <hr>
 
                     {% if ad.comments|length > 0 %}
-                        <h2 class="mb-3">Commentaires de nos voyageurs :</h2>
+                        <h2 class="mb-3">Commentaires des loueurs :</h2>
 
                         <div class="alert alert-info">
                             <h4 class="alert-heading text-center">
                                 <div class="row align-items-center">
                                     <div class="col">
-                                        Note globale donnée par nos voyageurs
+                                        Note globale donnée
                                     </div>
                                     <div class="col">
                                         {% include 'partials/rating.html.twig' with {'rating': ad.avgRatings} %}

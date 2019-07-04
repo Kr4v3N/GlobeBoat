@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\AccountType;
-use App\Form\AdminUserType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,6 +18,12 @@ use Doctrine\Common\Persistence\ObjectManager;
 class AdminUserController extends AbstractController
 {
     /**
+     * Permet d'afficher la liste des utilisateurs
+     *
+     * @param \App\Repository\UserRepository $repo
+     * @param                                $page
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
      * @Route("/admin/users/{page<\d+>?1}", name="admin_user_index")
      */
     public function index(UserRepository $repo, $page)
