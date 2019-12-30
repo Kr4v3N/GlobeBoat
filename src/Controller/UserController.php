@@ -15,8 +15,11 @@ class UserController extends AbstractController
 {
     /**
      * @Route("/user/{slug}", name="user_show")
+     * @param \App\Entity\User $user
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(User $user)
+    public function index(User $user): \Symfony\Component\HttpFoundation\Response
     {
 
         return $this->render('user/index.html.twig', [

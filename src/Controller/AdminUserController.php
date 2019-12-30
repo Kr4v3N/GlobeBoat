@@ -8,7 +8,7 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * Class AdminUserController
@@ -26,7 +26,7 @@ class AdminUserController extends AbstractController
      *
      * @Route("/admin/users/{page<\d+>?1}", name="admin_user_index")
      */
-    public function index(UserRepository $repo, $page)
+    public function index(UserRepository $repo, $page): \Symfony\Component\HttpFoundation\Response
     {
         $limits = 8;
         $start = $page * $limits - $limits;
@@ -44,14 +44,15 @@ class AdminUserController extends AbstractController
     /**
      * Permet d'éditer le profil d'un utilisateur
      *
-     * @param \App\Entity\User                        $user
-     * @param \Symfony\Component\HttpFoundation\Request  $request
-     * @param \Doctrine\Common\Persistence\ObjectManager $manager
+     * @param \App\Entity\User                          $user
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Doctrine\ORM\EntityManagerInterface      $manager
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
      * @Route("/admin/users/{id}/edit", name="admin_user_edit")
      */
-    public function edit(User $user, Request $request, ObjectManager $manager)
+    public function edit(User $user, Request $request, EntityManagerInterface $manager)
     {
 
         $form = $this->createForm(AccountType::class, $user);
@@ -81,13 +82,14 @@ class AdminUserController extends AbstractController
     /**
      * Permet de supprimer un utilisateur
      *
-     * @param \App\Entity\User                        $user
-     * @param \Doctrine\Common\Persistence\ObjectManager $manager
+     * @param \App\Entity\User                     $user
+     * @param \Doctrine\ORM\EntityManagerInterface $manager
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      *
      * @Route("/admin/users/{id}/delete", name="admin_user_delete")
      */
-    public function delete(User $user, ObjectManager $manager)
+    public function delete(User $user, EntityManagerInterface $manager): \Symfony\Component\HttpFoundation\RedirectResponse
     {
         if (count($user->getBookings()) > 0)
         {

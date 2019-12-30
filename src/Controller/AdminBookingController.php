@@ -7,8 +7,8 @@ use App\Form\AdminBookingType;
 use App\Repository\BookingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * Class AdminBookingController
@@ -20,8 +20,12 @@ class AdminBookingController extends AbstractController
 
     /**
      * @Route("/admin/bookings/{page<\d+>?1}", name="admin_booking_index")
+     * @param \App\Repository\BookingRepository $repo
+     * @param                                   $page
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(BookingRepository $repo, $page)
+    public function index(BookingRepository $repo, $page): \Symfony\Component\HttpFoundation\Response
     {
         $limits = 7;
         $start = $page * $limits - $limits;
@@ -39,14 +43,15 @@ class AdminBookingController extends AbstractController
     /**
      * Permet d'éditer une réservation
      *
-     * @param \App\Entity\Booking                        $booking
-     * @param \Symfony\Component\HttpFoundation\Request  $request
-     * @param \Doctrine\Common\Persistence\ObjectManager $manager
+     * @param \App\Entity\Booking                       $booking
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Doctrine\ORM\EntityManagerInterface      $manager
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
      * @Route("/admin/bookings/{id}/edit", name="admin_booking_edit")
      */
-    public function edit(Booking $booking, Request $request, ObjectManager $manager)
+    public function edit(Booking $booking, Request $request, EntityManagerInterface $manager)
     {
 
         $form = $this->createForm(AdminBookingType::class, $booking);
@@ -77,13 +82,14 @@ class AdminBookingController extends AbstractController
     /**
      * Permet de supprimer une réservation
      *
-     * @param \App\Entity\Booking                        $booking
-     * @param \Doctrine\Common\Persistence\ObjectManager $manager
+     * @param \App\Entity\Booking                  $booking
+     * @param \Doctrine\ORM\EntityManagerInterface $manager
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      *
      * @Route("/admin/bookings/{id}/delete", name="admin_booking_delete")
      */
-    public function delete(Booking $booking, ObjectManager $manager)
+    public function delete(Booking $booking, EntityManagerInterface $manager): \Symfony\Component\HttpFoundation\RedirectResponse
     {
 
         $manager->remove($booking);

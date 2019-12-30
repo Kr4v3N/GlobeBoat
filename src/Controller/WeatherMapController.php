@@ -10,7 +10,7 @@ class WeatherMapController extends AbstractController
     /**
      * @Route("/weather/map", name="weather_map")
      */
-    public function index()
+    public function index(): \Symfony\Component\HttpFoundation\Response
     {
         return $this->render('weather/weatherMap.html.twig');
     }

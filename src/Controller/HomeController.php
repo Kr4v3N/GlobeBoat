@@ -24,7 +24,8 @@ class HomeController extends AbstractController
      *
      * @Route("/", name="homepage")
      */
-    public function home(AdRepository $adRepo, UserRepository $userRepo){
+    public function home(AdRepository $adRepo, UserRepository $userRepo): \Symfony\Component\HttpFoundation\Response
+    {
 
         return $this->render('home.html.twig', [
             'ads' => $adRepo->findBestAds(3),
@@ -38,7 +39,7 @@ class HomeController extends AbstractController
      *
      * @Route("/mentionslegals", name="mentions_legals")
      */
-    public function mentionsLegals()
+    public function mentionsLegals(): string
     {
         return $this->render('mentionsLegals.html.twig');
     }

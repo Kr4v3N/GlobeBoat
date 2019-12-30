@@ -17,8 +17,11 @@ class AdminAccountController extends AbstractController
      * Permet de ce connecter
      *
      * @Route("/admin/login", name="admin_account_login")
+     * @param \Symfony\Component\Security\Http\Authentication\AuthenticationUtils $utils
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function login(AuthenticationUtils $utils)
+    public function login(AuthenticationUtils $utils): \Symfony\Component\HttpFoundation\Response
     {
 
         $error = $utils->getLastAuthenticationError();
@@ -37,7 +40,8 @@ class AdminAccountController extends AbstractController
      *
      * @Route("/admin/logout", name="admin_account_logout")
      */
-    public function logout() {
+    public function logout(): void
+    {
         // ...
     }
 }

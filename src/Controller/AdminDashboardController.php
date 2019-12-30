@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * Class AdminDashboardController
@@ -15,8 +15,13 @@ class AdminDashboardController extends AbstractController
 {
     /**
      * @Route("/admin", name="admin_dashboard")
+     * @param \Doctrine\ORM\EntityManagerInterface $manager
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function index(ObjectManager $manager)
+    public function index(EntityManagerInterface $manager): \Symfony\Component\HttpFoundation\Response
     {
 
         $users = $manager->createQuery('SELECT COUNT(a) FROM App\Entity\User a')->getSingleScalarResult();

@@ -7,8 +7,8 @@ use App\Form\AdminCommentType;
 use App\Repository\CommentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * Class AdminCommentController
@@ -19,6 +19,10 @@ class AdminCommentController extends AbstractController
 {
     /**
      * @Route("/admin/comments/{page<\d+>?1}", name="admin_comment_index")
+     * @param \App\Repository\CommentRepository $repo
+     * @param                                   $page
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(CommentRepository $repo, $page)
     {
@@ -38,14 +42,15 @@ class AdminCommentController extends AbstractController
     /**
      * Permet de modifier un commentaire
      *
-     * @param \App\Entity\Comment                        $comment
-     * @param \Symfony\Component\HttpFoundation\Request  $request
-     * @param \Doctrine\Common\Persistence\ObjectManager $manager
+     * @param \App\Entity\Comment                       $comment
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Doctrine\ORM\EntityManagerInterface      $manager
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/admin/comments/{id}/edit", name="admin_comment_edit")
      */
-    public function edit(Comment $comment, Request $request, ObjectManager $manager)
+    public function edit(Comment $comment, Request $request, EntityManagerInterface $manager): \Symfony\Component\HttpFoundation\Response
     {
 
         $form = $this->createForm(AdminCommentType::class, $comment);
@@ -72,13 +77,14 @@ class AdminCommentController extends AbstractController
     /**
      * Permet de supprimer un commentaire
      *
-     * @param \App\Entity\Comment                        $comment
-     * @param \Doctrine\Common\Persistence\ObjectManager $manager
+     * @param \App\Entity\Comment                  $comment
+     * @param \Doctrine\ORM\EntityManagerInterface $manager
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/admin/comments/{id}/delete", name="admin_comment_delete")
      */
-    public function delete(Comment $comment, ObjectManager $manager)
+    public function delete(Comment $comment, EntityManagerInterface $manager): \Symfony\Component\HttpFoundation\Response
     {
         $manager->remove($comment);
         $manager->flush();

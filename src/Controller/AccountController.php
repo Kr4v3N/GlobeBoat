@@ -10,10 +10,10 @@ use App\Form\RegistrationType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * Class AccountController
@@ -30,7 +30,7 @@ class AccountController extends AbstractController
      *
      * @Route("/login", name="account_login")
      */
-    public function login(AuthenticationUtils $utils)
+    public function login(AuthenticationUtils $utils): \Symfony\Component\HttpFoundation\Response
     {
         // Si erreur, récupère la dernière
         $error = $utils->getLastAuthenticationError();
@@ -50,19 +50,21 @@ class AccountController extends AbstractController
      *
      * @Route("/logout", name="account_logout")
      */
-    public function logout() {}
+    public function logout(): void
+    {}
 
     /**
      * Permet d'afficher le formulaire d'inscription
      *
      * @param \Symfony\Component\HttpFoundation\Request                             $request
-     * @param \Doctrine\Common\Persistence\ObjectManager                            $manager
+     * @param \Doctrine\ORM\EntityManagerInterface                                  $manager
      * @param \Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface $encoder
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
      * @Route("/register", name="account_register")
      */
-    public function register(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder)
+    public function register(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder)
     {
         $user = new User();
 
@@ -94,14 +96,15 @@ class AccountController extends AbstractController
     /**
      * Permet d'afficher et de traiter le formulaire de modification de profil
      *
-     * @param \Symfony\Component\HttpFoundation\Request  $request
-     * @param \Doctrine\Common\Persistence\ObjectManager $manager
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Doctrine\ORM\EntityManagerInterface      $manager
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      * @\Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted("ROLE_USER")
      *
      * @Route("/account/profile", name="account_profile")
      */
-    public function profile(Request $request, ObjectManager $manager)
+    public function profile(Request $request, EntityManagerInterface $manager): \Symfony\Component\HttpFoundation\Response
     {
         $user = $this->getUser();
 
@@ -130,12 +133,13 @@ class AccountController extends AbstractController
      *
      * @param \Symfony\Component\HttpFoundation\Request                             $request
      * @param \Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface $encoder
-     * @param \Doctrine\Common\Persistence\ObjectManager                            $manager
+     * @param \Doctrine\ORM\EntityManagerInterface                                  $manager
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/account/update-password", name="account-password")
      */
-    public function updatePassword(Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager)
+    public function updatePassword(Request $request, UserPasswordEncoderInterface $encoder, EntityManagerInterface $manager): \Symfony\Component\HttpFoundation\Response
     {
         $passwordUpdate = new PasswordUpdate();
 
@@ -182,7 +186,7 @@ class AccountController extends AbstractController
      *
      * @Route("/account", name="account_index")
      */
-    public function myAccount()
+    public function myAccount(): \Symfony\Component\HttpFoundation\Response
     {
 
         return $this->render('user/index.html.twig', [
@@ -197,7 +201,8 @@ class AccountController extends AbstractController
      *
      * @Route("/account/bookings", name="account_bookings")
      */
-    public function bookings() {
+    public function bookings(): \Symfony\Component\HttpFoundation\Response
+    {
 
         return $this->render('account/bookings.html.twig');
     }

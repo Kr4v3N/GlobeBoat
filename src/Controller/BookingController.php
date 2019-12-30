@@ -7,10 +7,10 @@ use App\Entity\Booking;
 use App\Entity\Comment;
 use App\Form\BookingType;
 use App\Form\CommentType;
-use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * Class BookingController
@@ -22,16 +22,17 @@ class BookingController extends AbstractController
     /**
      * Permet de créer une réservation
      *
-     * @param \App\Entity\Ad                             $ad
-     * @param \Symfony\Component\HttpFoundation\Request  $request
-     * @param \Doctrine\Common\Persistence\ObjectManager $manager
+     * @param \App\Entity\Ad                            $ad
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Doctrine\ORM\EntityManagerInterface      $manager
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      * @\Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted("ROLE_USER")
      *
      * @Route("/ads/{slug}/book", name="booking_create")
      */
 
-    public function book(Ad $ad, Request $request, ObjectManager $manager)
+    public function book(Ad $ad, Request $request, EntityManagerInterface $manager): \Symfony\Component\HttpFoundation\Response
     {
         $booking = new Booking();
         $form = $this->createForm(BookingType::class, $booking);
@@ -73,14 +74,15 @@ class BookingController extends AbstractController
     /**
      * Permet d'afficher la page d'une réservation
      *
-     * @param Booking $booking
-     * @param Request $request
-     * @param ObjectManager $manager
+     * @param Booking                              $booking
+     * @param Request                              $request
+     * @param \Doctrine\ORM\EntityManagerInterface $manager
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/booking/{id}", name="booking_show")
      */
-    public function show(Booking $booking, Request $request, ObjectManager $manager)
+    public function show(Booking $booking, Request $request, EntityManagerInterface $manager): \Symfony\Component\HttpFoundation\Response
     {
         $comment = new Comment();
 
@@ -115,7 +117,7 @@ class BookingController extends AbstractController
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function bookings()
+    public function bookings(): \Symfony\Component\HttpFoundation\Response
     {
         return $this->render('account/bookings.html.twig');
     }

@@ -5,10 +5,10 @@ namespace App\Controller;
 use App\Entity\Ad;
 use App\Form\AnnouncementType;
 use App\Repository\AdRepository;
-use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * Class AdminAdController
@@ -28,7 +28,7 @@ class AdminAdController extends AbstractController
      */
 
 
-    public function index(AdRepository $repo, $page)
+    public function index(AdRepository $repo, $page): \Symfony\Component\HttpFoundation\Response
     {
         $limits = 7;
         $start = $page * $limits - $limits;
@@ -46,14 +46,15 @@ class AdminAdController extends AbstractController
     /**
      * Permet d'afficher le formulaire d'édition
      *
-     * @param \App\Entity\Ad                             $ad
-     * @param \Symfony\Component\HttpFoundation\Request  $request
-     * @param \Doctrine\Common\Persistence\ObjectManager $manager
+     * @param \App\Entity\Ad                            $ad
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Doctrine\ORM\EntityManagerInterface      $manager
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/admin/ads/{id}/edit", name="admin_ads_edit")
      */
-    public function edit(Ad $ad, Request $request, ObjectManager $manager)
+    public function edit(Ad $ad, Request $request, EntityManagerInterface $manager): \Symfony\Component\HttpFoundation\Response
     {
 
         $form = $this->createForm(AnnouncementType::class, $ad);
@@ -80,13 +81,14 @@ class AdminAdController extends AbstractController
     /**
      * Permet de supprimer une annonce
      *
-     * @param \App\Entity\Ad                             $ad
-     * @param \Doctrine\Common\Persistence\ObjectManager $manager
+     * @param \App\Entity\Ad                       $ad
+     * @param \Doctrine\ORM\EntityManagerInterface $manager
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      *
      * @Route("/admin/ads/{id}/delete", name="admin_ads_delete")
      */
-    public function delete(Ad $ad, ObjectManager $manager)
+    public function delete(Ad $ad, EntityManagerInterface $manager): \Symfony\Component\HttpFoundation\RedirectResponse
     {
 
         if(count($ad->getBookings()) > 0)
