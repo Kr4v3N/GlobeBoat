@@ -15,7 +15,7 @@
         "build": "encore production"
     },
     "dependencies": {
-        "jquery": "^3.4.1",
+        "jquery": "^3.5.0",
         "node-sass": "^4.9.3",
         "npm-watch": "^0.6.0",
         "popper": "^1.0.1",
