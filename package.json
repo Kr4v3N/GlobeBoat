@@ -16,7 +16,7 @@
     },
     "dependencies": {
         "jquery": "^3.5.0",
-        "node-sass": "^4.9.3",
+        "node-sass": "^4.13.1",
         "npm-watch": "^0.6.0",
         "popper": "^1.0.1",
         "sass-loader": "^7.1.0",
