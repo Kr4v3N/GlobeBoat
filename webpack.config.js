@@ -28,6 +28,7 @@ Encore
     //.enableTypeScriptLoader()
 
     // uncomment if you use Sass/SCSS files
+    .disableSingleRuntimeChunk()
     .enableSassLoader()
 
     // uncomment for legacy applications that require $/jQuery as a global variable
